@@ -43,7 +43,7 @@ export default function Hero() {
       className="min-h-screen flex items-center justify-center relative opacity-0 transition-opacity duration-1000"
       style={{
         backgroundImage:
-          "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(&rsquo;/portfolio-banner.jpg&rsquo;)",
+          "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/portfolio-banner.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

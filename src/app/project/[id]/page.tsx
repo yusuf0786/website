@@ -1,8 +1,15 @@
-import { getProjectById, projects } from "@/lib/projects";
+"use client";
+
+import { useParams } from "next/navigation";
+
+import { getProjectById} from "@/lib/projects";
 import ProjectModal from "./ProjectModal";
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const project = await getProjectById(params.id);
+export default function ProjectPage() {
+  const params = useParams();
+
+  const id = typeof params.id === "string" ? params.id : Array.isArray(params.id) ? params.id[0] : undefined;
+  const project = id ? getProjectById(id) : undefined;
   if (!project) {
     return <div>Project not found.</div>;
   }
@@ -11,10 +18,4 @@ export default async function Page({ params }: { params: { id: string } }) {
       <ProjectModal project={project} />
     </div>
   );
-}
-
-export async function generateStaticParams() {
-  return projects.map((project) => ({
-    params: { id: project.id },
-  }));
 }
