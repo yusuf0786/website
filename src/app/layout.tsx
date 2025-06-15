@@ -75,6 +75,7 @@ export default function RootLayout({
           }}
         />
         <link rel="canonical" href="https://yusuf0786.github.io/mywebsite/" />
+        <meta name="google-site-verification" content="BhJrHvP820i8RZ3nEKPnvulfJ26NSopHTu8_Jw0u-Vs" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
