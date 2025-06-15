@@ -1,14 +1,12 @@
-export default function ProjectLayout({
-  children,
-  modal,
-}: {
+export default function ProjectLayout(props : {
   children: React.ReactNode;
-  modal: React.ReactNode;
+  // modal: React.ReactNode;
 }) {
+  
   return (
     <>
-      {children}
-      {modal}
+      {props.children}
+      {/* {props.modal} */}
     </>
   );
 }
