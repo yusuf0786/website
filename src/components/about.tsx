@@ -9,6 +9,7 @@ export default function About() {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
+    const node = sectionRef.current
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -18,13 +19,13 @@ export default function About() {
       { threshold: 0.1 },
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+    if (node) {
+      observer.observe(node)
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
+      if (node) {
+        observer.unobserve(node)
       }
     }
   }, [])
@@ -57,11 +58,11 @@ export default function About() {
           <div>
             <h3 className="text-2xl font-bold mb-4 dark:text-[#fdfdfd80]">Who am I?</h3>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
-              Hi! I'm a Front-End Web Developer with 3 years of experience building responsive, user-friendly websites and web applications. I specialize in HTML5, CSS3, JavaScript, and modern tools like React.js, Next.js, and TypeScript. I'm also skilled in using frameworks and libraries like Bootstrap, TailwindCSS, jQuery, and Sass. I enjoy turning design ideas into clean, functional code and working with Git and GitHub for version control.
+              Hi! I&rsquo;m a Front-End Web Developer with 3 years of experience building responsive, user-friendly websites and web applications. I specialize in HTML5, CSS3, JavaScript, and modern tools like React.js, Next.js, and TypeScript. I&rsquo;m also skilled in using frameworks and libraries like Bootstrap, TailwindCSS, jQuery, and Sass. I enjoy turning design ideas into clean, functional code and working with Git and GitHub for version control.
             </p>
             <p className="text-gray-600 dark:text-gray-300 mb-8">
               My goal is to build applications that are not only visually appealing but also highly functional and
-              user-friendly. I'm constantly learning new technologies and techniques to improve my skills and deliver
+              user-friendly. I&rsquo;m constantly learning new technologies and techniques to improve my skills and deliver
               better results.
             </p>
 
@@ -157,7 +158,7 @@ export default function About() {
             <div className="space-y-8">
               {[
                 {
-                  degree: "Bachelor's in Mass Media",
+                  degree: "Bachelor&rsquo;s in Mass Media",
                   institution: "Mumbai University",
                   period: "2000 - 2000",
                   description: "Specialized in Mass Communication.",

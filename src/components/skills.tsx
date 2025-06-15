@@ -6,6 +6,7 @@ export default function Skills() {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
+    const section = sectionRef.current
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -26,13 +27,13 @@ export default function Skills() {
       { threshold: 0.1 },
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+    if (section) {
+      observer.observe(section)
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
+      if (section) {
+        observer.unobserve(section)
       }
     }
   }, [])
@@ -46,12 +47,12 @@ export default function Skills() {
     { name: "TaiulwindCSS", percentage: 85 },
   ]
 
-  const softSkills = [
-    { name: "Communication", percentage: 90 },
-    { name: "Teamwork", percentage: 90 },
-    { name: "Problem Solving", percentage: 95 },
-    { name: "Time Management", percentage: 90 },
-  ]
+  // const softSkills = [
+  //   { name: "Communication", percentage: 90 },
+  //   { name: "Teamwork", percentage: 90 },
+  //   { name: "Problem Solving", percentage: 95 },
+  //   { name: "Time Management", percentage: 90 },
+  // ]
 
   return (
     <section
@@ -64,7 +65,7 @@ export default function Skills() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-[#fdfdfd80]">My Skills</h2>
           <div className="w-20 h-1 bg-primary mx-auto"></div>
           <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Here are my technical and soft skills that I've developed over the years.
+            Here are my technical and soft skills that I&rsquo;ve developed over the years.
           </p>
         </div>
 

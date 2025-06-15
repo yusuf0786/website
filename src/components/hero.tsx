@@ -8,6 +8,7 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
+    const section = sectionRef.current
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -17,13 +18,13 @@ export default function Hero() {
       { threshold: 0.1 },
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+    if (section) {
+      observer.observe(section)
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
+      if (section) {
+        observer.unobserve(section)
       }
     }
   }, [])
@@ -42,14 +43,14 @@ export default function Hero() {
       className="min-h-screen flex items-center justify-center relative opacity-0 transition-opacity duration-1000"
       style={{
         backgroundImage:
-          "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/portfolio-banner.jpg')",
+          "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(&rsquo;/portfolio-banner.jpg&rsquo;)",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
       <div className="container mx-auto px-4 text-center text-white">
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
-          Hello, I'm <span className="text-primary">Yusuf Ansari</span>
+          Hello, I&rsquo;m <span className="text-primary">Yusuf Ansari</span>
         </h1>
         <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
           A passionate front End Web Developer creating mesmerizing and functional web apps

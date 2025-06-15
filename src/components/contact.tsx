@@ -19,8 +19,10 @@ export default function Contact() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState("")
+  // No need for a separate 'section' variable
 
   useEffect(() => {
+    const section = sectionRef.current
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -30,13 +32,13 @@ export default function Contact() {
       { threshold: 0.1 },
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+    if (section) {
+      observer.observe(section)
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
+      if (section) {
+        observer.unobserve(section)
       }
     }
   }, [])
@@ -74,7 +76,7 @@ export default function Contact() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-[#fdfdfd80]">Get In Touch</h2>
           <div className="w-20 h-1 bg-primary mx-auto"></div>
           <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Feel free to contact me for any work or suggestions. I'll get back to you as soon as possible.
+            Feel free to contact me for any work or suggestions. I&rsquo;ll get back to you as soon as possible.
           </p>
         </div>
 
