@@ -67,7 +67,7 @@ export default function ProjectModal({ project }: ProjectModalProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white shadow-lg"
+              className="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white shadow-lg cursor-pointer"
               onClick={() => router.back()}
             >
               <X size={20} />
