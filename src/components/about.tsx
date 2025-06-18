@@ -88,12 +88,12 @@ export default function About() {
                 </CardContent>
               </Card>
 
-              <Card className="border border-gray-500 dark:border-[#fdfdfd80]">
+              {/* <Card className="border border-gray-500 dark:border-[#fdfdfd80]">
                 <CardContent className="p-4 flex items-center gap-3 dark:text-white">
                   <Calendar className="text-primary" size={20} />
                   <span>Available for Job</span>
                 </CardContent>
-              </Card>
+              </Card> */}
             </div>
           </div>
         </div>
@@ -109,7 +109,7 @@ export default function About() {
             <div className="space-y-8">
               {[
                 {
-                  title: "Front-End Developer (Part Time)",
+                  title: "Front-End Developer",
                   company: "Octapro Solutions PVT. LTD.",
                   period: "June 2024 - Present",
                   description:
