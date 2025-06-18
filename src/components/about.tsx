@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { User, Mail, MapPin, Calendar, Briefcase, GraduationCap } from "lucide-react"
+import { User, Mail, MapPin, Briefcase, GraduationCap } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 
