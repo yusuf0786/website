@@ -6,10 +6,7 @@ import { getProjectById} from "@/lib/projects";
 import ProjectModal from "./ProjectModal";
 
 export default function ProjectPage() {
-  console.log("ProjectPage");
-  
   const params = useParams();
-
   const id = typeof params.id === "string" ? params.id : Array.isArray(params.id) ? params.id[0] : undefined;
   const project = id ? getProjectById(id) : undefined;
   
@@ -18,7 +15,7 @@ export default function ProjectPage() {
   }
 
   return (
-    <div>
+    <div className="min-h-screen">
       <ProjectModal project={project} />
     </div>
   );

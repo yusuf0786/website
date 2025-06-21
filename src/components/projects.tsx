@@ -10,11 +10,24 @@ import ProjectFilters from "@/components/project-filters"
 import Image from "next/image"
 import Link from "next/link"
 
-export default function Projects() {
+export default function Projects({ clicked, setClicked }: { clicked: boolean, setClicked: React.Dispatch<React.SetStateAction<boolean>> }) {
   const sectionRef = useRef<HTMLElement>(null)
   // const router = useRouter()
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>("All")
   const [filteredProjects, setFilteredProjects] = useState(getProjectsByCategory("All"))
+
+  const handleClick = () => {
+    setClicked(true);
+  };
+
+  useEffect(() => {
+    if (clicked) {
+      const timeout = setTimeout(() => {
+        setClicked(false);
+      }, 1000); // hide loader after short time or once new route mounts
+      return () => clearTimeout(timeout);
+    }
+  }, [clicked, setClicked]);
 
   useEffect(() => {
     const node = sectionRef.current
@@ -67,7 +80,7 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
-            <Link key={project.id} href={`/project/${project.id}`} style={{ animationDelay: `${index * 100}ms`, }}>
+            <Link onClick={handleClick} key={project.id} href={`/project/${project.id}`} style={{ animationDelay: `${index * 100}ms`, }}>
               <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300">
                     <Image
                     width={100}

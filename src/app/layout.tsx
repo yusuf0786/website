@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Script from "next/script";
+import RouteLoader from "@/components/RouteLoader";
 // import { ReactNode } from "react";
 
 const geistSans = Geist({
@@ -91,6 +92,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header/>
+          <RouteLoader/>
           {children}
           <div id="modal-root"/>
         <Footer/>
