@@ -60,7 +60,7 @@ export const projects: Project[] = [
     title: "Alchemy",
     description:
       "This website was built using the Bootstrap 5 CSS framework, featuring a custom Bootstrap navigation bar and a Bootstrap carousel for enhanced UI and user experience.",
-    image: "/alchemy.png",
+    image: "/Alchemy.png",
     tags: ["HTML5", "CSS3", "Bootstrap", "JS & jQuery", "SCSS",],
     category: "Website",
     liveUrl: "https://yusuf0786.github.io/Alchemy/",
