@@ -82,7 +82,7 @@ export const projects: Project[] = [
     title: "Cascade",
     description:
       "This project was built using HTML, CSS Grid, JavaScript, and jQuery. The functionality to increase and decrease product quantities was implemented using JavaScript and jQuery.",
-    image: "/cascade.png",
+    image: "/Cascade.png",
     tags: ["HTML5", "CSS3 (Grid)", "JS & jQuery",],
     category: "Website",
     liveUrl: "https://yusuf0786.github.io/cascade-grid/",

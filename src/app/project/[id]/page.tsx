@@ -15,7 +15,7 @@ export default function ProjectPage() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <ProjectModal project={project} />
     </div>
   );

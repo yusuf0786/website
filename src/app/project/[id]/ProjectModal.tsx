@@ -61,13 +61,14 @@ export default function ProjectModal({ project }: ProjectModalProps) {
 
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        router.back()
+        // router.back()
+        router.push("/#projects")
       }
     }
 
     const handleClickOutside = (e: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-        router.back()
+        router.push("/#projects")
       }
     }
 
@@ -93,7 +94,7 @@ export default function ProjectModal({ project }: ProjectModalProps) {
         (
         <Card
             ref={modalRef}
-            className="w-full max-w-4xl max-h-[90vh] overflow-y-auto m-4 animate-in zoom-in-95 duration-300"
+            className="w-full max-w-4xl max-h-[90vh] overflow-y-auto m-4 animate-in zoom-in-95 duration-300 scrollbar-custom"
           >
             <CardContent className="p-0">
               <div className="relative">
