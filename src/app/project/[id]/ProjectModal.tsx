@@ -114,10 +114,12 @@ export default function ProjectModal({ project }: ProjectModalProps) {
                     className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    priority
+                    // priority
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute top-4 left-4">
-                    <span className="bg-primary/90 text-primary-foreground text-sm font-medium px-3 py-1 rounded-full flex items-center gap-1">
+                    <span className="bg-[#ffffff99] dark:bg-[#00000099] text-black dark:text-white shadow-lg text-sm font-medium px-3 py-1 rounded flex items-center gap-1">
                       <Tag size={14} />
                       {project.category}
                     </span>
@@ -125,15 +127,15 @@ export default function ProjectModal({ project }: ProjectModalProps) {
                 </div>
               </div>
 
-              <div className="p-6 bg-(--background) dark:bg-(--background-dark) text-[#0f0f0f] dark:text-[#f0f0f0]">
+              <div className="p-6 bg-[#f0f0f0] dark:bg-(--background-dark) text-[#0f0f0f] dark:text-[#f0f0f0]">
                 <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
-                <p className="mb-6 leading-relaxed ">{project.description}</p>
+                <p className="mb-4 leading-relaxed ">{project.description}</p>
 
                 <div className="mb-6">
                   <h3 className="text-lg font-semibold mb-3">Technologies Used</h3>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, index) => (
-                      <span key={index} className="text-sm font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">
+                      <span key={index} className="text-sm font-medium bg-[#ffffff99] dark:bg-[#00000099] text-primary shadow px-3 py-1 rounded-full">
                         #{tag}
                       </span>
                     ))}

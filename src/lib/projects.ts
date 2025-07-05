@@ -34,6 +34,17 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/yusuf0786/website",
   },
   {
+    id: "todos-app",
+    title: "Best Todos App",
+    description:
+      "Best Todos App, I wanted a todo app like this, I use it every day to write todos and keep track of them, Built with Next.js, TypeScript, Tailwind CSS, useReducer, and Context API.",
+    image: "/best-todos-app-SS.png",
+    tags: ["Next.js", "React", "Tailwind CSS", "TypeScript", "useReducer", "Context API"],
+    category: "Portfolio",
+    liveUrl: "https://best-todos-app.vercel.app/",
+    githubUrl: "https://github.com/yusuf0786/todo-context-usereducer-nextjs",
+  },
+  {
     id: "react-dashboard",
     title: "React Dashboard",
     description:
