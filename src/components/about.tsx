@@ -139,7 +139,7 @@ export default function About() {
               ].map((item, index) => (
                 <div key={index} className="relative pl-8 border-l-2 border-gray-200 dark:border-gray-700">
                   <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-blue-300 dark:bg-teal-500"></div>
-                  <h4 className="text-lg font-semibold text-[#fdfdfd80]">{item.title}</h4>
+                  <h4 className="text-lg font-semibold text-dark dark:text-[#fdfdfd80]">{item.title}</h4>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
                     {item.company} | {item.period}
                   </p>

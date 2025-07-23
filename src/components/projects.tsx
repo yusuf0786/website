@@ -87,7 +87,7 @@ export default function Projects({ clicked, setClicked }: { clicked: boolean, se
                     height={100}
                       src={project.image || "/placeholder.svg"}
                       alt={project.title}
-                      className="w-full h-auto min-h-[200px] max-h-[250px] object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-auto min-h-[225px] max-h-[225px] object-cover transition-transform duration-500 group-hover:scale-105"
                       // fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       priority={index < 3}
