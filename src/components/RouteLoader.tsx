@@ -19,7 +19,7 @@ export default function RouteLoader() {
 
   return (
      isLoading && (
-        <div className="fixed inset-0 flex items-center justify-center bg-white/70 z-50 bg-gray-50 dark:bg-gray-900">
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-50 dark:bg-gray-900">
            <div className="loader"></div>
         </div>
     )

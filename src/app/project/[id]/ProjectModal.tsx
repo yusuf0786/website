@@ -154,7 +154,7 @@ export default function ProjectModal({ project }: ProjectModalProps) {
                       Live Demo
                     </a>
                   </Button>
-                  <Button asChild variant="outline" className="flex-1 bg-(--background-dark) dark:bg-(--background) text-[#0f0f0f] text-[#f0f0f0] dark:text-[#0f0f0f]">
+                  <Button asChild variant="outline" className="flex-1 bg-(--background-dark) dark:bg-(--background) text-[#f0f0f0] dark:text-[#0f0f0f]">
                     <a
                       href={project.githubUrl}
                       target="_blank"
