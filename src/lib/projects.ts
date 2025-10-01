@@ -1,9 +1,11 @@
 // lib/projects.ts
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 export interface Project {
   id: string
   title: string
   description: string
+  descriptionMdx?: MDXRemoteSerializeResult
   image: string
   tags: string[]
   category: string

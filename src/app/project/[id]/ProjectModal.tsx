@@ -6,12 +6,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { X, ExternalLink, Github, Tag } from "lucide-react"
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { MDXRemote } from "next-mdx-remote";
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
 // ... rest of imports ...
 
 type Project = {
   id: string;
   title: string;
   description: string;
+  descriptionMdx?: MDXRemoteSerializeResult
   image: string;
   category: string;
   tags: string[];
@@ -129,7 +132,15 @@ export default function ProjectModal({ project }: ProjectModalProps) {
 
               <div className="p-6 bg-[#f0f0f0] dark:bg-(--background-dark) text-[#0f0f0f] dark:text-[#f0f0f0]">
                 <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
-                <p className="mb-4 leading-relaxed ">{project.description}</p>
+
+                <div className="mb-4 leading-relaxed">
+                  {project.descriptionMdx ? (
+                    <MDXRemote {...project.descriptionMdx} />
+                  ) : (
+                    <p>{project.description}</p>
+                  )}
+                </div>
+                {/* <p className="mb-4 leading-relaxed ">{project.description}</p> */}
 
                 <div className="mb-6">
                   <h3 className="text-lg font-semibold mb-3">Technologies Used</h3>

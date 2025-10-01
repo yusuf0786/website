@@ -1,22 +1,20 @@
-"use client";
-
-import { useParams } from "next/navigation";
-
-import { getProjectById} from "@/lib/projects";
+import { getProjectById } from "@/lib/projects";
 import ProjectModal from "./ProjectModal";
+import { serialize } from "next-mdx-remote/serialize";
 
-export default function ProjectPage() {
-  const params = useParams();
-  const id = typeof params.id === "string" ? params.id : Array.isArray(params.id) ? params.id[0] : undefined;
-  const project = id ? getProjectById(id) : undefined;
-  
+export default async function ProjectPage({ params }: { params: { id: string } }) {
+  const id = params.id;
+  const project = getProjectById(id);
+
   if (!project) {
     return <div>Project not found.</div>;
   }
 
+  const mdxSource = await serialize(project.description);
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <ProjectModal project={project} />
+      <ProjectModal project={{ ...project, descriptionMdx: mdxSource }} />
     </div>
   );
 }
