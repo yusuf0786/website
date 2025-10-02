@@ -2,11 +2,11 @@ import { getProjectById } from "@/lib/projects";
 import ProjectModal from "./ProjectModal";
 import { serialize } from "next-mdx-remote/serialize";
 
-type ProjectPageProps = {
+type ProjectPageParamsType = {
   params: Promise<{ id: string }>
 };
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
+export default async function ProjectPage({ params }: ProjectPageParamsType) {
   const { id: rawId } = await params;
 
   const id = typeof rawId === "string" ? rawId : Array.isArray(rawId) ? rawId[0] : undefined;
