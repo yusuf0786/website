@@ -12,7 +12,7 @@ export default function RouteLoader() {
     setIsLoading(true);
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 500); // Adjust duration as needed
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [pathname]);
