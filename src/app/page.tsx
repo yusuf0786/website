@@ -7,11 +7,27 @@ import Hero from "@/components/hero";
 // import Projects from "@/components/projects";
 // import RouteLoader from "@/components/RouteLoader";
 import Skills from "@/components/skills";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
   const mainRef = useRef<HTMLElement>(null);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const sectionId = searchParams.get("scrollTo");
+    if (!sectionId) return;
+
+    const element = document.getElementById(sectionId);
+    if (!element) return;
+
+    const headerOffset = 80;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+  }, [searchParams]);
 
   useEffect(() => {
       const node = mainRef.current

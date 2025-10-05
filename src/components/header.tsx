@@ -25,7 +25,7 @@ export default function Header() {
 
   const scrollToSection = (sectionId: string) => {
     setIsMenuOpen(false)
-    if (sectionId === "projects") { 
+    if (sectionId === "projects") {
       router.push("/project")
       return
     }
@@ -39,6 +39,9 @@ export default function Header() {
         top: offsetPosition,
         behavior: "smooth",
       })
+    }
+    if (window.location.pathname !== "/") {
+      router.push(`/?scrollTo=${sectionId}`);
     }
   }
 
