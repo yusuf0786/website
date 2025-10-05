@@ -65,13 +65,13 @@ export default function ProjectModal({ project }: ProjectModalProps) {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         // router.back()
-        router.push("/#projects")
+        router.back()
       }
     }
 
     const handleClickOutside = (e: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-        router.push("/#projects")
+        router.back()
       }
     }
 

@@ -10,24 +10,11 @@ import ProjectFilters from "@/components/project-filters"
 import Image from "next/image"
 import Link from "next/link"
 
-export default function Projects({ clicked, setClicked }: { clicked: boolean, setClicked: React.Dispatch<React.SetStateAction<boolean>> }) {
+export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null)
   // const router = useRouter()
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>("All")
   const [filteredProjects, setFilteredProjects] = useState(getProjectsByCategory("All"))
-
-  const handleClick = () => {
-    setClicked(true);
-  };
-
-  useEffect(() => {
-    if (clicked) {
-      const timeout = setTimeout(() => {
-        setClicked(false);
-      }, 1000); // hide loader after short time or once new route mounts
-      return () => clearTimeout(timeout);
-    }
-  }, [clicked, setClicked]);
 
   useEffect(() => {
     const node = sectionRef.current
@@ -80,41 +67,41 @@ export default function Projects({ clicked, setClicked }: { clicked: boolean, se
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
-            <Link onClick={handleClick} key={project.id} href={`/project/${project.id}`} style={{ animationDelay: `${index * 100}ms`, }}>
+            <Link key={project.id} href={`/project/${project.id}`} style={{ animationDelay: `${index * 100}ms`, }}>
               <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300">
-                    <Image
-                    width={100}
-                    height={100}
-                      src={project.image || "/placeholder.svg"}
-                      alt={project.title}
-                      className="w-full h-auto min-h-[225px] max-h-[225px] object-cover transition-transform duration-500 group-hover:scale-105"
-                      // fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      priority={index < 3}
-                    />
-                    <div className="absolute top-3 right-3 bg-cyan-100 text-cyan-500 dark:bg-teal-500 dark:text-white border dark:border-teal-500 rounded">
-                      <span className="bg-primary/90 text-primary-foreground text-xs font-medium px-2 py-1 rounded-full">
-                        {project.category}
-                      </span>
-                    </div>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors dark:text-[#fdfdfd80]">{project.title}</h3>
+                  <Image
+                  width={100}
+                  height={100}
+                    src={project.image || "/placeholder.svg"}
+                    alt={project.title}
+                    className="w-full h-auto min-h-[225px] max-h-[225px] object-cover transition-transform duration-500 group-hover:scale-105"
+                    // fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    priority={index < 3}
+                  />
+                  <div className="absolute top-3 right-3 bg-cyan-100 text-cyan-500 dark:bg-teal-500 dark:text-white border dark:border-teal-500 rounded">
+                    <span className="bg-primary/90 text-primary-foreground text-xs font-medium px-2 py-1 rounded-full">
+                      {project.category}
+                    </span>
+                  </div>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors dark:text-[#fdfdfd80]">{project.title}</h3>
 
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.slice(0, 3).map((tag, tagIndex) => (
-                        <span key={tagIndex} className="text-xs font-medium bg-primary/10 text-primary px-2 py-1 rounded dark:text-[#fdfdfd80]">
-                          #{tag}
-                        </span>
-                      ))}
-                      {project.tags.length > 3 && (
-                        <span className="text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded">
-                          +{project.tags.length - 3} more
-                        </span>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.slice(0, 3).map((tag, tagIndex) => (
+                      <span key={tagIndex} className="text-xs font-medium bg-primary/10 text-primary px-2 py-1 rounded dark:text-[#fdfdfd80]">
+                        #{tag}
+                      </span>
+                    ))}
+                    {project.tags.length > 3 && (
+                      <span className="text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded">
+                        +{project.tags.length - 3} more
+                      </span>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
             // <div
             //   key={project.id}
             //   onClick={(e) => handleProjectClick(project.id, e)}

@@ -4,15 +4,14 @@
 import About from "@/components/about";
 import Contact from "@/components/contact";
 import Hero from "@/components/hero";
-import Projects from "@/components/projects";
-import RouteLoader from "@/components/RouteLoader";
+// import Projects from "@/components/projects";
+// import RouteLoader from "@/components/RouteLoader";
 import Skills from "@/components/skills";
 import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
   const mainRef = useRef<HTMLElement>(null);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
-  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
       const node = mainRef.current
@@ -43,15 +42,12 @@ export default function Home() {
 
   return ( 
       <main ref={mainRef} className="min-h-screen bg-gray-50 dark:bg-gray-900">
-        {clicked || isInitialLoad ? <RouteLoader/> :
         <>
         <Hero />
         <About />
-        <Projects clicked={clicked} setClicked={setClicked}/>
         <Skills />
         <Contact />
         </>
-        }
       </main>
   );
 }

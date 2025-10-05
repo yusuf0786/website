@@ -3,8 +3,10 @@
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useRouter } from "next/navigation"
 
 export default function Header() {
+  const router = useRouter()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
@@ -23,6 +25,10 @@ export default function Header() {
 
   const scrollToSection = (sectionId: string) => {
     setIsMenuOpen(false)
+    if (sectionId === "projects") { 
+      router.push("/project")
+      return
+    }
     const element = document.getElementById(sectionId)
     if (element) {
       const headerOffset = 80
