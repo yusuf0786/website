@@ -101,8 +101,8 @@ export default function ProjectContent({ project }: ProjectContentProps) {
                 alt={project.title}
                 className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
                 fill
+                priority
                 // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                // priority
                 // loading="lazy"
                 decoding="async"
                 />
