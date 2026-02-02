@@ -43,7 +43,7 @@ export default function About() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="aspect-square relative rounded-2xl overflow-hidden border-3 border-primary/20 overflow-hidden">
+            <div className="aspect-square relative rounded-2xl overflow-hidden border-3 border-primary/20">
               <Image
                 src="/yusuf-HTT2411YA027.jpg"
                 alt="Profile"
@@ -109,30 +109,42 @@ export default function About() {
             <div className="space-y-8">
               {[
                 {
+                  title: "UI/UX Developer",
+                  company: "Convergence IT Services PVT. LTD.",
+                  // period: "Oct 2025 - Jan 2026",
+                  period: "",
+                  description:
+                    "Loading.."
+                },
+                {
                   title: "Front-End Developer",
                   company: "Octapro Solutions PVT. LTD.",
-                  period: "June 2024 - Present",
+                  // period: "June 2024 - Present",
+                  period: "",
                   description:
                     "Independently developed a CRM system using HTML5, CSS3, Bootstrap, SCSS, JavaScript, and jQuery. Integrated RESTful APIs, built a dynamic attendance module, utilized Google Maps API, and enhanced UX with plugins like DataTable and ApexCharts.js. Optimized mobile experience using Bootstrap Offcanvas and collaborated closely with backend developers."
                 },
                 {
                   title: "UI Developer",
                   company: "InCruiter India PVT. LTD.",
-                  period: "January 2024 - April 2024",
+                  // period: "January 2024 - April 2024",
+                  period: "",
                   description:
                     "Built and maintained WordPress websites with custom themes and post types. Used Advanced Custom Fields (ACF) with PHP, ensured cross-browser/device compatibility, and collaborated with developers and stakeholders to deliver globally accessible digital properties."
                 },
                 {
                   title: "Front-End Developer",
                   company: "PaperPlane Design Solutions PVT. LTD.",
-                  period: "March 2022 - October 2023",
+                  // period: "March 2022 - October 2023",
+                  period: "",
                   description:
                     "Created responsive, pixel-perfect web pages from design mockups. Used ReactJS with Material UI, GSAP animations, and Axios for API integration. Employed SASS, SEO techniques, performance tools (Lighthouse, ySlow), and Git for version control. Delivered optimized, cross-browser applications with reusable components."
                 },
                 {
                   title: "Web Developer Intern",
                   company: "Zobble Solutions PVT. LTD.",
-                  period: "May 2021 - November 2021",
+                  // period: "May 2021 - November 2021",
+                  period: "",
                   description:
                     "Developed user interfaces from scratch using HTML5, CSS3, JavaScript, and jQuery. Focused on cross-browser compatibility, animation, and bug resolution. Supported senior developers in building interactive and visually engaging UIs."
                 }
@@ -141,7 +153,7 @@ export default function About() {
                   <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-blue-300 dark:bg-teal-500"></div>
                   <h4 className="text-lg font-semibold text-dark dark:text-[#fdfdfd80]">{item.title}</h4>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                    {item.company} | {item.period}
+                    {item.company} {item.period && item.period !== "" ? "| " + item.period : ""}
                   </p>
                   <p className="text-gray-600 dark:text-gray-300">{item.description}</p>
                 </div>
@@ -175,7 +187,7 @@ export default function About() {
                   <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary"></div>
                   <h4 className="text-lg font-semibold text-[#fdfdfd80]">{item.degree}</h4>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                    {item.institution} | {item.period}
+                    {item.institution} {item.period && item.period !== "" ? "| " + item.period : ""}
                   </p>
                   <p className="text-gray-600 dark:text-gray-300">{item.description}</p>
                 </div>
