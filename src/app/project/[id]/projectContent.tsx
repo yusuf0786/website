@@ -95,15 +95,14 @@ export default function ProjectContent({ project }: ProjectContentProps) {
         <h1 className="text-white">Loading...</h1> :
         (
         <>
-            <div className="aspect-video overflow-hidden w-full relative">
+            <div className="aspect-video-undefined overflow-hidden w-full relative p-4">
                 <Image
                 src={project.image || "/placeholder.svg"}
                 alt={project.title}
-                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
-                fill
+                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 shadow-lg rounded-lg"
+                width={1280}
+                height={720}
                 priority
-                // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                // loading="lazy"
                 decoding="async"
                 />
                 <div className="absolute top-4 left-4">
