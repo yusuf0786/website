@@ -113,8 +113,7 @@ export default function About() {
                   company: "Convergence IT Services PVT. LTD.",
                   // period: "Oct 2025 - Jan 2026",
                   period: "",
-                  description:
-                    "Loading.."
+                  description: "Developed and maintained Joomla-based websites, including custom templates and extensions, ensuring responsive design, optimized performance, and secure content management."
                 },
                 {
                   title: "Front-End Developer",
