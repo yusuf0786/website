@@ -18,12 +18,24 @@ export const projectCategories = [
   "Portfolio",
   "Dashboard",
   "Website",
+  "Blog",
 ] as const
 
 export type ProjectCategory = (typeof projectCategories)[number]
 
 // --- Project Data ---
 export const projects: Project[] = [
+  {
+    id: "blog",
+    title: "Blog",
+    description:
+      "A Blog Application, Built with Node.js, Express.js, EJS, MongoDB, and Mongoose. It performs CRUD operations i.e. Create, Read, Update, and Delete.",
+    image: "/blog.png",
+    tags: ["Node.js", "Express.js", "EJS", "MongoDB", "Mongoose"],
+    category: "Blog",
+    liveUrl: "https://project-blogs.onrender.com/",
+    githubUrl: "https://github.com/yusuf0786/project-blogs",
+  },
   {
     id: "portfolio-website",
     title: "Next.js Portfolio",
