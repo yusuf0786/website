@@ -49,7 +49,7 @@ export const projects: Project[] = [
   },
   {
     id: "todos-app",
-    title: "Best Todos App",
+    title: "NextJS Todos App",
     description:
       "Best Todos App, I wanted a todo app like this, I use it every day to write todos and keep track of them, Built with Next.js, TypeScript, Tailwind CSS, useReducer, and Context API.",
     image: "/best-todos-app-SS.png",

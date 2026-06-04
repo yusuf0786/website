@@ -55,7 +55,7 @@ export default function Projects() {
       className="py-20 bg-white dark:bg-gray-800 opacity-0 transition-opacity duration-1000"
     >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-[#fdfdfd80]">My Projects</h2>
           <div className="w-20 h-1 bg-primary mx-auto"></div>
           <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
@@ -68,7 +68,7 @@ export default function Projects() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
             <Link key={project.id} href={`/project/${project.id}`} style={{ animationDelay: `${index * 100}ms`, }}>
-              <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300">
+              <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300" style={{minHeight: "100%"}}>
                   <Image
                   width={100}
                   height={100}
