@@ -12,7 +12,7 @@ export default function Footer() {
 
           <div className="text-center md:text-right">
             <p>&copy; {currentYear} Yusuf Ansari. All rights reserved.</p>
-            <p className="text-gray-400 text-sm mt-1">Designed and built with ❤️ using Next.js and Tailwind CSS</p>
+            <p className="text-gray-400 text-sm mt-1">Built using Next.js and Tailwind CSS</p>
           </div>
         </div>
       </div>
