@@ -16,7 +16,7 @@ export interface Project {
 export const projectCategories = [
   "All",
   "Portfolio",
-  "Dashboard",
+  "Dashboard/CRM",
   "Website",
   "Blog",
 ] as const
@@ -25,6 +25,17 @@ export type ProjectCategory = (typeof projectCategories)[number]
 
 // --- Project Data ---
 export const projects: Project[] = [
+  {
+    id: "crm",
+    title: "CRM",
+    description:
+      "Built a full-stack CRM using React.js, React Router & Axios for frontend, with Node.js, Express.js, MongoDB & Mongoose on the backend. Used Recharts for data visualization, TanStack Table & TanStack Query for data handling, and Hello Pangea DnD for drag-and-drop functionality. Implemented secure authentication using bcrypt.js & JSON Web Tokens (JWT)",
+    image: "/crm.png",
+    tags: ["React.js", "TypeScript", "Tailwind CSS", "TanStack", "Recharts", "React Router", "Node.js", "Express.js", "MongoDB", "Mongoose", "JWT", "Bcryptjs"],
+    category: "Dashboard/CRM",
+    liveUrl: "https://crm-portfolio-project-mern.vercel.app/",
+    githubUrl: "https://github.com/yusuf0786/crm-mern",
+  },
   {
     id: "blog",
     title: "Blog",
@@ -65,7 +76,7 @@ export const projects: Project[] = [
       "A React Dashboard Template, Built with React, Tailwind CSS, and Material UI.",
     image: "/react-dashboard.png",
     tags: ["React", "MUI", "SCSS",],
-    category: "Dashboard",
+    category: "Dashboard/CRM",
     liveUrl: "https://yusuf-dashboard-react.netlify.app/",
     githubUrl: "https://github.com/yusuf0786/dashboard-react",
   },
