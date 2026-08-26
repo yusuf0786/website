@@ -102,16 +102,6 @@ export default function Projects() {
                 </CardContent>
               </Card>
             </Link>
-            // <div
-            //   key={project.id}
-            //   onClick={(e) => handleProjectClick(project.id, e)}
-            //   className="cursor-pointer"
-            //   style={{
-            //     animationDelay: `${index * 100}ms`,
-            //   }}
-            // >
-              
-            //   </div>
           ))}
         </div>
 

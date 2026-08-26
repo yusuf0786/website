@@ -134,6 +134,7 @@ export default function Skills() {
                   "Mongoose",
                   "Git",
                   "Github",
+                  "Agentic AI",
                   "Effective Communication",
                   "Teamwork",
                   "Problem Solving",

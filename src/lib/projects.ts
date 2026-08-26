@@ -15,7 +15,7 @@ export interface Project {
 
 export const projectCategories = [
   "All",
-  "Portfolio",
+  // "Portfolio",
   "Dashboard/CRM",
   "Website",
   "Blog",
@@ -47,17 +47,17 @@ export const projects: Project[] = [
     liveUrl: "https://project-blogs.onrender.com/",
     githubUrl: "https://github.com/yusuf0786/project-blogs",
   },
-  {
-    id: "portfolio-website",
-    title: "Next.js Portfolio",
-    description:
-      "My Personal Portfolio to Showcase My Skills and Projects, Built with Next.js, TypeScript, and Tailwind CSS.",
-    image: "/portfolio.png",
-    tags: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
-    category: "Portfolio",
-    liveUrl: "https://yusssuf-website.vercel.app/",
-    githubUrl: "https://github.com/yusuf0786/website",
-  },
+  // {
+  //   id: "portfolio-website",
+  //   title: "Next.js Portfolio",
+  //   description:
+  //     "My Personal Portfolio to Showcase My Skills and Projects, Built with Next.js, TypeScript, and Tailwind CSS.",
+  //   image: "/portfolio.png",
+  //   tags: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
+  //   category: "Portfolio",
+  //   liveUrl: "https://yusssuf-website.vercel.app/",
+  //   githubUrl: "https://github.com/yusuf0786/website",
+  // },
   {
     id: "todos-app",
     title: "NextJS Todos App",

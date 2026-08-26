@@ -58,7 +58,7 @@ export default function About() {
           <div>
             <h3 className="text-2xl font-bold mb-4 dark:text-[#fdfdfd80]">Who am I?</h3>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
-              Hi! I&rsquo;m a Front-End Web Developer with 3 years of experience building responsive, user-friendly websites and web applications. I specialize in HTML5, CSS3, JavaScript, and modern tools like React.js, Next.js, and TypeScript. I&rsquo;m also skilled in using frameworks and libraries like Bootstrap, TailwindCSS, jQuery, and Sass. I enjoy turning design ideas into clean, functional code and working with Git and GitHub for version control.
+              Hi! I&rsquo;m a Front-End Web Developer with 4 years of experience building responsive, user-friendly websites and web applications. I specialize in HTML5, CSS3, JavaScript, and modern tools like React.js, Next.js, and TypeScript. I&rsquo;m also skilled in using frameworks and libraries like Bootstrap, TailwindCSS, jQuery, and Sass. I enjoy turning design ideas into clean, functional code and working with Git and GitHub for version control.
             </p>
             <p className="text-gray-600 dark:text-gray-300 mb-8">
               My goal is to build applications that are not only visually appealing but also highly functional and
