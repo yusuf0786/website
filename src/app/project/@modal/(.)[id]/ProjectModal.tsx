@@ -28,7 +28,7 @@ type ProjectModalProps = {
 };
 
 export default function ProjectModal({ project }: ProjectModalProps) {
-  const refElement = useIntersectionObserver()
+  const refElement = useIntersectionObserver<HTMLDivElement>()
   const router = useRouter();
   const modalRef = useRef<HTMLDivElement>(null);
 

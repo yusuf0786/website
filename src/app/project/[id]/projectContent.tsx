@@ -27,7 +27,7 @@ type ProjectContentProps = {
 };
 
 export default function ProjectContent({ project }: ProjectContentProps) {
-  const refElement = useIntersectionObserver()
+  const refElement = useIntersectionObserver<HTMLDivElement>()
   const router = useRouter();
   const modalRef = useRef<HTMLDivElement>(null);
 
