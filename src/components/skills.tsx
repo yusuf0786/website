@@ -44,7 +44,7 @@ export default function Skills() {
     { name: "React", percentage: 95 },
     { name: "Next.js", percentage: 95 },
     { name: "TypeScript", percentage: 85 },
-    { name: "TaiulwindCSS", percentage: 85 },
+    { name: "TailwindCSS", percentage: 85 },
   ]
 
   // const softSkills = [

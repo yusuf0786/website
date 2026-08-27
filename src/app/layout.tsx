@@ -67,16 +67,14 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "http://schema.org",
-              "@type": "Article",
+              "@type": "WebSite",
               "name": "Yusuf Ansari",
               "author": {
                 "@type": "Person",
                 "name": "Yusuf"
               },
               "image": "https://yusuf0786.github.io/portfolio/img/myimg.png",
-              "articleSection": "https://yusuf0786.github.io/portfolio/services/index.html",
-              "articleBody": "https://yusuf0786.github.io/portfolio/services/index.html#",
-              "url": "https://yusufansari.infinityfreeapp.com/index.html",
+              "url": "https://yusssuf-website.vercel.app/",
               "publisher": {
                 "@type": "Organization",
                 "name": "Yusuf Ansari"
