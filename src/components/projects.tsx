@@ -2,41 +2,20 @@
 
 import type React from "react"
 
-import { useEffect, useRef, useState } from "react"
+import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { getProjectsByCategory, type ProjectCategory } from "@/lib/projects"
 import ProjectFilters from "@/components/project-filters"
 // import { useRouter } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver"
 
 export default function Projects() {
-  const sectionRef = useRef<HTMLElement>(null)
+  const sectionRef = useIntersectionObserver()
   // const router = useRouter()
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>("All")
   const [filteredProjects, setFilteredProjects] = useState(getProjectsByCategory("All"))
-
-  useEffect(() => {
-    const node = sectionRef.current
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-fade-in")
-        }
-      },
-      { threshold: 0.1 },
-    )
-
-    if (node) {
-      observer.observe(node)
-    }
-
-    return () => {
-      if (node) {
-        observer.unobserve(node)
-      }
-    }
-  }, [])
 
   const handleCategoryChange = (category: ProjectCategory) => {
     setActiveCategory(category)
@@ -70,8 +49,8 @@ export default function Projects() {
             <Link key={project.id} href={`/project/${project.id}`} style={{ animationDelay: `${index * 100}ms`, }}>
               <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300" style={{minHeight: "100%"}}>
                   <Image
-                  width={100}
-                  height={100}
+                  width={393}
+                  height={225}
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
                     className="w-full h-auto min-h-[225px] max-h-[225px] object-cover transition-transform duration-500 group-hover:scale-105"

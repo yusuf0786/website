@@ -1,42 +1,22 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver"
 
 export default function Skills() {
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const section = sectionRef.current
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-fade-in")
-
-          // Animate progress bars when section is visible
-          const progressBars = document.querySelectorAll("[data-progress]")
-          progressBars.forEach((bar) => {
-            const value = bar.getAttribute("data-progress")
-            if (value) {
-              setTimeout(() => {
-                ;(bar as HTMLElement).style.width = value
-              }, 300)
-            }
-          })
+  const sectionRef = useIntersectionObserver({
+    onIntersect: () => {
+      // Animate progress bars when section is visible
+      const progressBars = document.querySelectorAll("[data-progress]")
+      progressBars.forEach((bar) => {
+        const value = bar.getAttribute("data-progress")
+        if (value) {
+          setTimeout(() => {
+            ;(bar as HTMLElement).style.width = value
+          }, 300)
         }
-      },
-      { threshold: 0.1 },
-    )
-
-    if (section) {
-      observer.observe(section)
-    }
-
-    return () => {
-      if (section) {
-        observer.unobserve(section)
-      }
-    }
-  }, [])
+      })
+    },
+  })
 
   const technicalSkills = [
     { name: "HTML/CSS", percentage: 95 },

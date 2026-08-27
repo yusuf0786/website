@@ -2,15 +2,16 @@
 
 import type React from "react"
 
-import { useEffect, useRef, useState } from "react"
+import { useState } from "react"
 import { Phone, Mail, MapPin, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver"
 
 export default function Contact() {
-  const sectionRef = useRef<HTMLElement>(null)
+  const sectionRef = useIntersectionObserver()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,29 +20,6 @@ export default function Contact() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState("")
-  // No need for a separate 'section' variable
-
-  useEffect(() => {
-    const section = sectionRef.current
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-fade-in")
-        }
-      },
-      { threshold: 0.1 },
-    )
-
-    if (section) {
-      observer.observe(section)
-    }
-
-    return () => {
-      if (section) {
-        observer.unobserve(section)
-      }
-    }
-  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target

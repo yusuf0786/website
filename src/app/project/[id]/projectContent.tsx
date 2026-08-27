@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState} from "react"
+import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Tag } from "lucide-react"
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 // ... rest of imports ...
 
 type Project = {
@@ -26,37 +27,9 @@ type ProjectContentProps = {
 };
 
 export default function ProjectContent({ project }: ProjectContentProps) {
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
-  const refElement = useRef<HTMLDivElement>(null)
+  const refElement = useIntersectionObserver()
   const router = useRouter();
   const modalRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const refElement1 = refElement.current
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-fade-in")
-          if (isInitialLoad) {
-            setTimeout(() => {
-              setIsInitialLoad(false)
-            }, 1000)
-          }
-        }
-      },
-      { threshold: 0.1 },
-    )
-
-    if (refElement1) {
-      observer.observe(refElement1)
-    }
-
-    return () => {
-      if (refElement1) {
-        observer.unobserve(refElement1)
-      }
-    }
-  }, [isInitialLoad, refElement])
 
   useEffect(() => {
     // document.body.style.overflow = "hidden"
@@ -90,10 +63,6 @@ export default function ProjectContent({ project }: ProjectContentProps) {
 
   return (
     <div ref={refElement} className="flex flex-col animate-in fade-in-0 duration-300 mt-16">
-    {
-        isInitialLoad ? 
-        <h1 className="text-white">Loading...</h1> :
-        (
         <>
             <div className="aspect-video-undefined overflow-hidden w-full relative p-4">
                 <Image
@@ -161,8 +130,6 @@ export default function ProjectContent({ project }: ProjectContentProps) {
                 </div>
             </div>
         </>
-        )
-    }      
     </div>
   )
 }

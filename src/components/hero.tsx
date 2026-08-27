@@ -1,33 +1,12 @@
 "use client"
 
-import { useEffect, useRef } from "react"
 import { ArrowDown } from "lucide-react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver"
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const section = sectionRef.current
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-fade-in")
-        }
-      },
-      { threshold: 0.1 },
-    )
-
-    if (section) {
-      observer.observe(section)
-    }
-
-    return () => {
-      if (section) {
-        observer.unobserve(section)
-      }
-    }
-  }, [])
+  const sectionRef = useIntersectionObserver()
 
   const scrollToAbout = () => {
     const aboutSection = document.getElementById("about")
@@ -40,14 +19,23 @@ export default function Hero() {
     <section
       id="home"
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center relative opacity-0 transition-opacity duration-1000"
-      style={{
-        backgroundImage:"linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/banner-bg.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      className="min-h-screen flex items-center justify-center relative opacity-0 transition-opacity duration-1000 overflow-hidden"
     >
-      <div className="container mx-auto px-4 text-center text-white">
+      {/* Background image with overlay */}
+      <Image
+        src="/banner-bg.jpg"
+        alt="Hero background"
+        fill
+        className="object-cover"
+        priority
+        quality={85}
+      />
+
+      {/* Dark overlay gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/80" />
+
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-4 text-center text-white">
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
           Hello, I&rsquo;m <span className="text-primary">Yusuf Ansari</span>
         </h1>
@@ -68,7 +56,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
         <Button
           variant="ghost"
           size="icon"

@@ -1,34 +1,12 @@
 "use client"
 
-import { useEffect, useRef } from "react"
 import { User, Mail, MapPin, Briefcase, GraduationCap } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver"
 
 export default function About() {
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const node = sectionRef.current
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-fade-in")
-        }
-      },
-      { threshold: 0.1 },
-    )
-
-    if (node) {
-      observer.observe(node)
-    }
-
-    return () => {
-      if (node) {
-        observer.unobserve(node)
-      }
-    }
-  }, [])
+  const sectionRef = useIntersectionObserver()
 
   return (
     <section

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState} from "react"
+import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { X, ExternalLink, Github, Tag } from "lucide-react"
@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 // ... rest of imports ...
 
 type Project = {
@@ -27,37 +28,9 @@ type ProjectModalProps = {
 };
 
 export default function ProjectModal({ project }: ProjectModalProps) {
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
-  const refElement = useRef<HTMLDivElement>(null)
+  const refElement = useIntersectionObserver()
   const router = useRouter();
   const modalRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const refElement1 = refElement.current
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-fade-in")
-          if (isInitialLoad) {
-            setTimeout(() => {
-              setIsInitialLoad(false)
-            }, 1000)
-          }
-        }
-      },
-      { threshold: 0.1 },
-    )
-
-    if (refElement1) {
-      observer.observe(refElement1)
-    }
-
-    return () => {
-      if (refElement1) {
-        observer.unobserve(refElement1)
-      }
-    }
-  }, [isInitialLoad, refElement])
 
   useEffect(() => {
     document.body.style.overflow = "hidden"
@@ -91,10 +64,6 @@ export default function ProjectModal({ project }: ProjectModalProps) {
 
   return (
     <div ref={refElement} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in-0 duration-300">
-    {
-        isInitialLoad ? 
-        <h1 className="text-white">Loading...</h1> :
-        (
         <Card
             ref={modalRef}
             className="w-full max-w-4xl max-h-[90vh] overflow-y-auto m-4 animate-in zoom-in-95 duration-300 scrollbar-custom"
@@ -180,8 +149,6 @@ export default function ProjectModal({ project }: ProjectModalProps) {
               </div>
             </CardContent>
           </Card>
-        )
-    }      
     </div>
   )
 }

@@ -10,13 +10,14 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { sendEmail } from '@/lib/actions'
-import { useEffect, useRef } from 'react'
 import { Card, CardContent } from './ui/card'
 import { Mail, MapPin, Phone, Send } from 'lucide-react'
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver'
 
 type Inputs = z.infer<typeof ContactFormSchema>
 
 export default function ContactResend() {
+  const sectionRef = useIntersectionObserver()
   const {
     register,
     handleSubmit,
@@ -42,30 +43,6 @@ export default function ContactResend() {
     toast.success('Message sent successfully!')
     reset()
   }
-
-  const sectionRef = useRef<HTMLElement>(null)
-
-    useEffect(() => {
-        const section = sectionRef.current
-        const observer = new IntersectionObserver(
-        ([entry]) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("animate-fade-in")
-            }
-        },
-        { threshold: 0.1 },
-        )
-
-        if (section) {
-            observer.observe(section)
-        }
-
-        return () => {
-            if (section) {
-                observer.unobserve(section)
-            }
-        }
-    }, [])
 
   return (
       <section
