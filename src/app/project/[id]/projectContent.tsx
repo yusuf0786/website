@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
-// ... rest of imports ...
 
 type Project = {
   id: string;

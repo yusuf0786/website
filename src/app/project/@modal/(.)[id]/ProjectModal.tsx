@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { X, ExternalLink, Github, Tag } from "lucide-react"
@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
-// ... rest of imports ...
+import ProjectModalSkeleton from "@/components/ProjectModalSkeleton";
 
 type Project = {
   id: string;
@@ -58,13 +58,23 @@ export default function ProjectModal({ project }: ProjectModalProps) {
     }
   }, [router])
 
-  if (!project) {
-    return null
-  }
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [minElapsed, setMinElapsed] = useState(false);
+
+  // 3-second minimum display.
+  useEffect(() => {
+    const timer = setTimeout(() => setMinElapsed(true), 0);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const showSkeleton = !(minElapsed && imageLoaded);
+
+  if (!project) return null;
 
   return (
     <div ref={refElement} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in-0 duration-300">
-        <Card
+      {/* Skeleton overlay — covers real modal until 3s + image loaded */}
+      <Card
             ref={modalRef}
             className="w-full max-w-4xl max-h-[90vh] overflow-y-auto m-4 animate-in zoom-in-95 duration-300 scrollbar-custom"
           >
@@ -85,10 +95,11 @@ export default function ProjectModal({ project }: ProjectModalProps) {
                     alt={project.title}
                     className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
                     fill
+                    onLoad={() => setImageLoaded(true)}
                     // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    // priority
-                    // loading="lazy"
-                    decoding="async"
+                    priority // load early
+                    // loading="lazy" // dealay loading image itself
+                    // decoding="async" // decode already loaded image asyncly
                   />
                   <div className="absolute top-4 left-4">
                     <span className="bg-[#ffffff99] dark:bg-[#00000099] text-black dark:text-white shadow-lg text-sm font-medium px-3 py-1 rounded flex items-center gap-1">
@@ -149,6 +160,13 @@ export default function ProjectModal({ project }: ProjectModalProps) {
               </div>
             </CardContent>
           </Card>
+
+      {/* Skeleton overlay – shown until 3s timer + image loaded */}
+      {showSkeleton && (
+        <div className="absolute inset-0 z-[60] pointer-events-none">
+          <ProjectModalSkeleton />
+        </div>
+      )}
     </div>
   )
 }
