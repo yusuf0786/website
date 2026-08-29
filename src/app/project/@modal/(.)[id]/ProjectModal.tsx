@@ -58,14 +58,26 @@ export default function ProjectModal({ project }: ProjectModalProps) {
 
   const [imageLoaded, setImageLoaded] = useState(false);
   const [minElapsed, setMinElapsed] = useState(false);
+  const [hideSkeleton, setHideSkeleton] = useState(false);
+  const [showFlash, setShowFlash] = useState(false);
 
-  // 3-second minimum display.
+  // Minimum load timer (short).
   useEffect(() => {
     const timer = setTimeout(() => setMinElapsed(true), 200);
     return () => clearTimeout(timer);
   }, []);
 
-  const showSkeleton = !(minElapsed && imageLoaded);
+  // When content is ready: hide skeleton instantly and trigger smooth flash.
+  useEffect(() => {
+    if (minElapsed && imageLoaded && !hideSkeleton) {
+      setHideSkeleton(true);
+      setShowFlash(true);
+      const timer = setTimeout(() => setShowFlash(false), 800);
+      return () => clearTimeout(timer);
+    }
+  }, [minElapsed, imageLoaded, hideSkeleton]);
+
+  const showSkeleton = !hideSkeleton;
 
   if (!project) return null;
 
@@ -159,12 +171,18 @@ export default function ProjectModal({ project }: ProjectModalProps) {
             </CardContent>
           </Card>
 
-      {/* Skeleton overlay – shown until 3s timer + image loaded */}
+      {/* Skeleton overlay — hides instantly when content is ready */}
       {showSkeleton && (
         <div className="absolute inset-0 z-[60] pointer-events-none">
           <ProjectModalSkeleton />
         </div>
       )}
-    </div>
+
+      {/* Flash appears when skeleton hides, fades smoothly */}
+      {showFlash && (
+        <div className="absolute inset-0 z-[70] bg-white dark:bg-[#110011] animate-flash pointer-events-none" />
+      )}
+
+          </div>
   )
 }

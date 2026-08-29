@@ -183,6 +183,20 @@
     }
   }
 
+  /* Flash effect when modal content finishes loading */
+  .animate-flash {
+    animation: flashEffect 0.8s ease-out both;
+  }
+
+  @keyframes flashEffect {
+    0% {
+      opacity: 0.75;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
   /* =========================
      Slide
      ========================= */
