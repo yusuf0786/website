@@ -134,4 +134,120 @@
       transform: translateY(0);
     }
   }
+
+   /* =========================
+     Animation base
+     ========================= */
+
+  .animate-in {
+    animation-duration: var(--animation-duration, 300ms);
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+  }
+
+  .animate-out {
+    animation-duration: var(--animation-duration, 300ms);
+    animation-timing-function: ease-in;
+    animation-fill-mode: both;
+  }
+
+  /* =========================
+     Fade
+     ========================= */
+
+  .fade-in-0 {
+    animation-name: fade-in;
+  }
+
+  .fade-out-0 {
+    animation-name: fade-out;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  /* =========================
+     Slide
+     ========================= */
+
+  .slide-in-from-bottom-4 {
+    animation-name: slide-in-from-bottom-4;
+  }
+
+  @keyframes slide-in-from-bottom-4 {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .slide-in-from-top-4 {
+    animation-name: slide-in-from-top-4;
+  }
+
+  @keyframes slide-in-from-top-4 {
+    from {
+      opacity: 0;
+      transform: translateY(-1rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .slide-in-from-left-4 {
+    animation-name: slide-in-from-left-4;
+  }
+
+  @keyframes slide-in-from-left-4 {
+    from {
+      opacity: 0;
+      transform: translateX(-1rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .slide-in-from-right-4 {
+    animation-name: slide-in-from-right-4;
+  }
+
+  @keyframes slide-in-from-right-4 {
+    from {
+      opacity: 0;
+      transform: translateX(1rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
 }

@@ -6,8 +6,8 @@ import { X } from "lucide-react";
 
 export default function ProjectModalSkeleton() {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in-0 duration-300">
-      <Card className="w-full max-w-4xl max-h-[90vh] overflow-y-auto m-4 animate-in zoom-in-95 duration-300 scrollbar-custom">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-transparent">
+      <Card className="w-full max-w-4xl max-h-[90vh] overflow-y-auto m-4 scrollbar-custom">
         <CardContent className="p-0">
           <div className="relative">
             <div className="aspect-video overflow-hidden rounded-t-lg bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 animate-pulse" />

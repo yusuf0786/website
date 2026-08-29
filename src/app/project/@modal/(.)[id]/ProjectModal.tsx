@@ -8,7 +8,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import ProjectModalSkeleton from "@/components/ProjectModalSkeleton";
 
 type Project = {
@@ -28,7 +27,6 @@ type ProjectModalProps = {
 };
 
 export default function ProjectModal({ project }: ProjectModalProps) {
-  const refElement = useIntersectionObserver<HTMLDivElement>()
   const router = useRouter();
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -63,7 +61,7 @@ export default function ProjectModal({ project }: ProjectModalProps) {
 
   // 3-second minimum display.
   useEffect(() => {
-    const timer = setTimeout(() => setMinElapsed(true), 0);
+    const timer = setTimeout(() => setMinElapsed(true), 200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -72,11 +70,11 @@ export default function ProjectModal({ project }: ProjectModalProps) {
   if (!project) return null;
 
   return (
-    <div ref={refElement} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in-0 duration-300">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in-0 duration-500">
       {/* Skeleton overlay — covers real modal until 3s + image loaded */}
       <Card
             ref={modalRef}
-            className="w-full max-w-4xl max-h-[90vh] overflow-y-auto m-4 animate-in zoom-in-95 duration-300 scrollbar-custom"
+            className="w-full max-w-4xl max-h-[90vh] overflow-y-auto m-4 animate-in fade-in-0 duration-500 scrollbar-custom"
           >
             <CardContent className="p-0">
               <div className="relative">
