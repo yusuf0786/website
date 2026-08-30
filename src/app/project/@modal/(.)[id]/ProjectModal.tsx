@@ -22,11 +22,15 @@ type Project = {
   githubUrl: string;
 };
 
+let hasFirstOpened = false;
+
 type ProjectModalProps = {
   project: Project;
 };
 
 export default function ProjectModal({ project }: ProjectModalProps) {
+  const isFirstOpen = !hasFirstOpened;
+  if (isFirstOpen) hasFirstOpened = true;
   const router = useRouter();
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -61,11 +65,15 @@ export default function ProjectModal({ project }: ProjectModalProps) {
   const [hideSkeleton, setHideSkeleton] = useState(false);
   const [showFlash, setShowFlash] = useState(false);
 
-  // Minimum load timer (short).
+  // Minimum load timer: 3ms only on very first open ever
   useEffect(() => {
-    const timer = setTimeout(() => setMinElapsed(true), 200);
-    return () => clearTimeout(timer);
-  }, []);
+    if (isFirstOpen) {
+      const timer = setTimeout(() => setMinElapsed(true), 3);
+      return () => clearTimeout(timer);
+    } else {
+      setMinElapsed(true);
+    }
+  }, [isFirstOpen]);
 
   // When content is ready: hide skeleton instantly and trigger smooth flash.
   useEffect(() => {
