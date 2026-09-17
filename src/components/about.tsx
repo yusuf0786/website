@@ -55,7 +55,7 @@ export default function About() {
               <Card className="border border-gray-500 dark:border-[#fdfdfd80]">
                 <CardContent className="p-4 flex items-center gap-3 dark:text-white">
                   <Mail className="text-primary" size={20} />
-                  <a href="mailto:yusssuf0786@gmail.com">yusssuf0786@gmail.com</a>
+                  <a href="mailto:yusuf.ansari.developer@gmail.com">yusuf.ansari.developer@gmail.com</a>
                 </CardContent>
               </Card>
 

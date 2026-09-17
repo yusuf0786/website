@@ -93,8 +93,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-medium">Email</h4>
-                    <a href="mailto:yusssuf0786@gmail.com" className="text-gray-600 dark:text-gray-300 break-words break-all">
-                      yusssuf0786@gmail.com
+                    <a href="mailto:yusuf.ansari.developer@gmail.com" className="text-gray-600 dark:text-gray-300 break-words break-all">
+                      yusuf.ansari.developer@gmail.com
                     </a>
                   </div>
                 </div>
