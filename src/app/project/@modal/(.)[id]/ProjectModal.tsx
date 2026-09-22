@@ -7,20 +7,8 @@ import { X, ExternalLink, Github, Tag } from "lucide-react"
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote";
-import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import ProjectModalSkeleton from "@/components/ProjectModalSkeleton";
-
-type Project = {
-  id: string;
-  title: string;
-  description: string;
-  descriptionMdx?: MDXRemoteSerializeResult
-  image: string;
-  category: string;
-  tags: string[];
-  liveUrl: string;
-  githubUrl: string;
-};
+import { Project } from "@/types";
 
 let hasFirstOpened = false;
 
@@ -39,7 +27,6 @@ export default function ProjectModal({ project }: ProjectModalProps) {
 
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        // router.back()
         router.back()
       }
     }

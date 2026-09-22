@@ -6,20 +6,8 @@ import { ExternalLink, Github, Tag } from "lucide-react"
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote";
-import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
-
-type Project = {
-  id: string;
-  title: string;
-  description: string;
-  descriptionMdx?: MDXRemoteSerializeResult
-  image: string;
-  category: string;
-  tags: string[];
-  liveUrl: string;
-  githubUrl: string;
-};
+import { Project } from "@/types";
 
 type ProjectContentProps = {
   project: Project;
@@ -35,7 +23,6 @@ export default function ProjectContent({ project }: ProjectContentProps) {
 
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        // router.back()
         router.back()
       }
     }
