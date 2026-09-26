@@ -38,7 +38,7 @@ export default function Skills() {
     <section
       id="skills"
       ref={sectionRef}
-      className="py-20 bg-gray-50 dark:bg-gray-900 opacity-0 transition-opacity duration-1000"
+      className="py-20 bg-(--background)"
     >
       <div className="container mx-auto px-4">
         <div className="text-center">
@@ -122,7 +122,7 @@ export default function Skills() {
                 ].map((tool, index) => (
                   <div
                     key={index}
-                    className="bg-white dark:bg-gray-800 text-black dark:text-[#fdfdfd80] p-4 text-center shadow-sm border border-gray-200 dark:border-gray-700 rounded-lg flex items-center justify-center"
+                    className="bg-white dark:bg-(--background) text-foreground p-4 text-center shadow-sm border border-gray-200 dark:border-gray-700 rounded-lg flex items-center justify-center"
                   >
                     {tool}
                   </div>

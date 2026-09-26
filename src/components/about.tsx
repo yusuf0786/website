@@ -12,7 +12,7 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="py-20 bg-gray-50 dark:bg-gray-900 opacity-0 transition-opacity duration-1000"
+      className="py-20 bg-gray-50 dark:bg-(--background) opacity-0 transition-opacity duration-1000"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-10 md:mb-16">
@@ -65,13 +65,6 @@ export default function About() {
                   <span>Mumbai, Maharashtra, India</span>
                 </CardContent>
               </Card>
-
-              {/* <Card className="border border-gray-500 dark:border-[#fdfdfd80]">
-                <CardContent className="p-4 flex items-center gap-3 dark:text-white">
-                  <Calendar className="text-primary" size={20} />
-                  <span>Available for Job</span>
-                </CardContent>
-              </Card> */}
             </div>
           </div>
         </div>

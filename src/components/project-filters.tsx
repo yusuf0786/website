@@ -14,9 +14,9 @@ export default function ProjectFilters({ activeCategory, onCategoryChange }: Pro
       {projectCategories.map((category) => (
         <Button
           key={category}
-          variant={activeCategory === category ? "default" : "outline"}
+          variant={activeCategory === category ? "fillBtnActive" : "fillBtn"}
           onClick={() => onCategoryChange(category)}
-          className={`transition-all duration-300 cursor-pointer ${activeCategory === category ? "dark:text-[#fdfdfd80] border border-[#0f0f0f50]" : "border-transparent"}`}
+          className={`transition-all duration-300`}
         >
           {category}
         </Button>

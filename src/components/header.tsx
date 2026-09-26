@@ -57,11 +57,11 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm" : "bg-transparent"
+        isScrolled ? "bg-white/90 dark:bg-(--background)/90 backdrop-blur-md shadow-sm" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <a href="#" className={`text-2xl font-bold ${
+        <a onClick={() => scrollToSection("home")} href="javascript:void(0)" className={`text-2xl font-bold ${
         isScrolled ? "dark:text-white" : "text-[#a6a6a6]"
         }`} >
           Portfolio
@@ -88,7 +88,7 @@ export default function Header() {
 
       {/* Mobile Navigation Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-900 shadow-lg">
+        <div className="md:hidden bg-white dark:bg-(--background) shadow-lg">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             {["home", "about", "projects", "skills", "contact"].map((item) => (
               <button

@@ -29,7 +29,7 @@ export default function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="py-20 bg-white dark:bg-gray-800 opacity-0 transition-opacity duration-1000"
+      className="py-20 bg-white dark:bg-(--background) opacity-0 transition-opacity duration-1000"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
@@ -45,13 +45,13 @@ export default function Projects() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
             <Link key={project.id} href={`/project/${project.id}`} style={{ animationDelay: `${index * 100}ms`, }}>
-              <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300" style={{minHeight: "100%"}}>
+              <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300 border border-gray-300 rounded-xl dark:border-[#1e1e1e]" style={{minHeight: "100%"}}>
                   <Image
                   width={393}
                   height={225}
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
-                    className="w-full h-auto min-h-[225px] max-h-[225px] object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-auto min-h-[225px] max-h-[225px] object-cover transition-transform duration-500 group-hover:scale-98 rounded-t-xl"
                     // fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     priority={index < 3}

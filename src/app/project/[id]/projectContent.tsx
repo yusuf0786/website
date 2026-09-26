@@ -48,7 +48,7 @@ export default function ProjectContent({ project }: ProjectContentProps) {
   }
 
   return (
-    <div ref={refElement} className="flex flex-col animate-in fade-in-0 duration-300 mt-16">
+    <div ref={refElement} className="flex flex-col animate-in fade-in-0 duration-300 pt-16 bg-background">
         <>
             <div className="aspect-video-undefined overflow-hidden w-full relative p-4">
                 <Image
@@ -67,7 +67,7 @@ export default function ProjectContent({ project }: ProjectContentProps) {
                     </span>
                 </div>
             </div>
-            <div className="p-6 bg-[#fff] dark:bg-(--background-dark) text-[#0f0f0f] dark:text-[#f0f0f0]">
+            <div className="p-6 text-foreground">
                 <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
 
                 <div className="mb-4 leading-relaxed">
@@ -77,7 +77,6 @@ export default function ProjectContent({ project }: ProjectContentProps) {
                     <p>{project.description}</p>
                     )}
                 </div>
-                {/* <p className="mb-4 leading-relaxed ">{project.description}</p> */}
 
                 <div className="mb-6">
                     <h3 className="text-lg font-semibold mb-3">Technologies Used</h3>
@@ -102,7 +101,7 @@ export default function ProjectContent({ project }: ProjectContentProps) {
                         Live Demo
                     </a>
                     </Button>
-                    <Button asChild variant="outline" className="flex-1 bg-(--background-dark) dark:bg-(--background) text-[#f0f0f0] dark:text-[#0f0f0f]">
+                    <Button asChild variant="primary" className="flex-1">
                     <a
                         href={project.githubUrl}
                         target="_blank"

@@ -60,7 +60,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="py-20 bg-white dark:bg-gray-800 opacity-0 transition-opacity duration-1000"
+      className="py-20 bg-white dark:bg-(--background) opacity-0 transition-opacity duration-1000"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
@@ -200,7 +200,7 @@ export default function Contact() {
 
                 {submitMessage && <div className="p-3 bg-green-100 text-green-700 rounded-md">{submitMessage}</div>}
 
-                <Button type="submit" className="w-full sm:w-auto border dark:border-white dark:text-[#fdfdfd80] hover:border-black hover:bg-black hover:text-white cursor-pointer" disabled={isSubmitting}>
+                <Button type="submit" className="w-full border dark:border-white dark:text-[#fdfdfd80] hover:bg-black hover:text-white cursor-pointer" disabled={isSubmitting}>
                   {isSubmitting ? (
                     <span className="flex items-center gap-2">
                       <svg
