@@ -62,9 +62,14 @@ export default function Header() {
       }`}
     >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <Link href="/" className={`text-2xl font-bold ${
-        isScrolled ? "dark:text-white" : "text-[#a6a6a6]"
-        }`}>
+        <Link
+          href="/"
+          className={`text-2xl font-bold ${isScrolled ? "dark:text-white" : "text-[#a6a6a6]"}`}
+          onClick={(e)=> {
+            e.preventDefault();
+            scrollToSection("home");
+          }}
+        >
           Portfolio
         </Link>
 
