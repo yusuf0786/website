@@ -73,7 +73,7 @@ export default function ProjectModal({ project }: ProjectModalProps) {
     }
   }, [minElapsed, imageLoaded, hideSkeleton]);
 
-  const showSkeleton = true;  
+  const showSkeleton = !hideSkeleton;
 
   if (!project) return null;
 

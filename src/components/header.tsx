@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 export default function Header() {
   const router = useRouter()
@@ -61,11 +62,11 @@ export default function Header() {
       }`}
     >
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <a onClick={() => scrollToSection("home")} href="javascript:void(0)" className={`text-2xl font-bold ${
+        <Link href="/" className={`text-2xl font-bold ${
         isScrolled ? "dark:text-white" : "text-[#a6a6a6]"
-        }`} >
+        }`}>
           Portfolio
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8 ">
