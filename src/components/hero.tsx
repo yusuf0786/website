@@ -40,14 +40,14 @@ export default function Hero() {
           Hello, I&rsquo;m <span className="text-primary">Yusuf Ansari</span>
         </h1>
         <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
-          A passionate front End Web Developer creating mesmerizing and functional web apps
+          A passionate Web Developer creating mesmerizing and functional web apps
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button size="lg" onClick={scrollToAbout} className="px-8 border hover:border-black hover:bg-black cursor-pointer duration-300">
+          <Button onClick={scrollToAbout} className="px-8 border hover:border-black hover:bg-black cursor-pointer duration-300">
             View My Work
           </Button>
           <a
-            className="px-8 bg-gray-400 border-white text-black hover:bg-white hover:text-primary border rounded-lg py-2 text-lg font-medium transition-colors duration-300 inline-block"
+            className="h-10 px-4 py-2 bg-gray-400 border border-gray-400 text-black hover:bg-white hover:text-primary rounded-md font-medium transition-colors duration-300 inline-flex items-center"
             href="/resume - Yusuf Ansari.pdf"
             download
           >

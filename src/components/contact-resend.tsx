@@ -48,7 +48,7 @@ export default function ContactResend() {
       <section
         id="contact"
         ref={sectionRef}
-        className="py-20 bg-white dark:bg-gray-800 opacity-0 transition-opacity duration-1000"
+        className="py-20 bg-white dark:bg-(--background) opacity-0 transition-opacity duration-1000"
       >
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">

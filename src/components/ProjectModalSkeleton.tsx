@@ -7,17 +7,17 @@ import { X } from "lucide-react";
 export default function ProjectModalSkeleton() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-transparent">
-      <Card className="w-full max-w-4xl max-h-[90vh] overflow-y-auto m-4 scrollbar-custom">
-        <CardContent className="p-0">
+      <Card className="w-full max-w-4xl max-h-[90vh] m-4 overflow-hidden bg-background scrollbar-custom">
+        <CardContent className="p-0 relative">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-2 right-5 z-10 shadow-lg"
+          >
+            <X size={20} />
+          </Button>
           <div className="relative">
             <div className="aspect-video overflow-hidden rounded-t-lg bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 animate-pulse" />
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white shadow-lg cursor-pointer"
-            >
-              <X size={20} />
-            </Button>
             <div className="absolute top-4 left-4">
               <span className="w-20 h-6 rounded bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 animate-pulse" />
             </div>

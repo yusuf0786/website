@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #cfcfcf;
+  --background: #ffffff;
   --background-dark: rgb(17, 0, 17);
   --foreground: #171717;
 }
@@ -35,10 +35,16 @@
     animation: skeleton-shimmer 1.5s ease-in-out infinite;
   }
 
-  .dark .skeleton-bar {
-    background: linear-gradient(90deg, #374151 0%, #4b5563 50%, #1f2937 100%);
-    background-size: 200% 100%;
-    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  @media (prefers-color-scheme: dark) {
+    .scrollbar-custom {
+      scrollbar-color: purple transparent; /* thumb and track for Firefox */
+    }
+    
+    .skeleton-bar {
+      background: linear-gradient(90deg, #374151 0%, #4b5563 50%, #1f2937 100%);
+      background-size: 200% 100%;
+      animation: skeleton-shimmer 1.5s ease-in-out infinite;
+    }
   }
 }
 
@@ -52,12 +58,12 @@
 }
 
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #0f0f0f;
     --foreground: #ededed;
   }
-} */
+}
 
 @layer base {
   :root {
@@ -108,9 +114,6 @@
 
 @layer base {
   * {
-    /* border-color: hsl(var(--border));
-    border-width: 1px; */
-    /* border-style: solid; */
     box-sizing: border-box;
   }
   body {

@@ -21,6 +21,7 @@ export default function ProjectModal({ project }: ProjectModalProps) {
   if (isFirstOpen) hasFirstOpened = true;
   const router = useRouter();
   const modalRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = "hidden"
@@ -72,101 +73,99 @@ export default function ProjectModal({ project }: ProjectModalProps) {
     }
   }, [minElapsed, imageLoaded, hideSkeleton]);
 
-  const showSkeleton = !hideSkeleton;
+  const showSkeleton = true;  
 
   if (!project) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in-0 duration-500">
-      {/* Skeleton overlay — covers real modal until 3s + image loaded */}
       <Card
-            ref={modalRef}
-            className="w-full max-w-4xl max-h-[90vh] overflow-y-auto m-4 animate-in fade-in-0 duration-500 scrollbar-custom"
+          ref={modalRef}
+          className="w-full max-w-4xl max-h-[90vh] overflow-hidden m-4 animate-in fade-in-0 duration-500 shadow-2xl flex flex-col relative bg-background scrollbar-custom"
+        >
+        <CardContent className="p-2 md:p-4 flex-1 overflow-y-auto" ref={scrollContainerRef}>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-3 right-5 z-10 shadow-lg"
+            onClick={() => router.back()}
           >
-            <CardContent className="p-0">
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white shadow-lg cursor-pointer"
-                  onClick={() => router.back()}
-                >
-                  <X size={20} />
-                </Button>
+            <X size={20} />
+          </Button>
+          <div className="relative text-foreground">
 
-                <div className="aspect-video overflow-hidden rounded-t-lg relative">
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
-                    fill
-                    onLoad={() => setImageLoaded(true)}
-                    // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    priority // load early
-                    // loading="lazy" // dealay loading image itself
-                    // decoding="async" // decode already loaded image asyncly
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-[#ffffff99] dark:bg-[#00000099] text-black dark:text-white shadow-lg text-sm font-medium px-3 py-1 rounded flex items-center gap-1">
-                      <Tag size={14} />
-                      {project.category}
-                    </span>
-                  </div>
-                </div>
+            <div className="aspect-video overflow-hidden rounded-t-lg relative transition-[transform, opacity, height] duration-500 ease-in-out translate-x-0 mb-3 rounded">
+              <Image
+                src={project.image || "/placeholder.svg"}
+                alt={project.title}
+                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
+                fill
+                onLoad={() => setImageLoaded(true)}
+                // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                priority // load early
+                // loading="lazy" // dealay loading image itself
+                // decoding="async" // decode already loaded image asyncly
+              />
+              <div className="absolute top-4 left-4">
+                <span className="bg-[#ffffff99] dark:bg-[#00000099] text-black dark:text-white shadow-lg text-sm font-medium px-3 py-1 rounded flex items-center gap-1">
+                  <Tag size={14} />
+                  {project.category}
+                </span>
               </div>
+            </div>
 
-              <div className="p-6 bg-[#f0f0f0] dark:bg-(--background-dark) text-[#0f0f0f] dark:text-[#f0f0f0]">
-                <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
+            <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
 
-                <div className="mb-4 leading-relaxed">
-                  {project.descriptionMdx ? (
-                    <MDXRemote {...project.descriptionMdx} />
-                  ) : (
-                    <p>{project.description}</p>
-                  )}
-                </div>
-                {/* <p className="mb-4 leading-relaxed ">{project.description}</p> */}
+            <div className="mb-4 leading-relaxed">
+              {project.descriptionMdx ? (
+                <MDXRemote {...project.descriptionMdx} />
+              ) : (
+                <p>{project.description}</p>
+              )}
+            </div>
 
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold mb-3">Technologies Used</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, index) => (
-                      <span key={index} className="text-sm font-medium bg-[#ffffff99] dark:bg-[#00000099] text-primary shadow px-3 py-1 rounded-full">
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <Button asChild className="flex-1 border">
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
-                    >
-                      <ExternalLink size={18} />
-                      Live Demo
-                    </a>
-                  </Button>
-                  <Button asChild variant="outline" className="flex-1 bg-(--background-dark) dark:bg-(--background) text-[#f0f0f0] dark:text-[#0f0f0f]">
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
-                    >
-                      <Github size={18} />
-                      View Code
-                    </a>
-                  </Button>
-                </div>
+            <div className="mb-6">
+              <h3 className="text-lg font-semibold mb-3">Technologies Used</h3>
+              <div className="flex flex-wrap gap-2">
+                {project.tags.map((tag, index) => (
+                  <span key={index} className="text-sm font-medium bg-[#ffffff99] dark:bg-[#00000099] text-primary shadow px-3 py-1 rounded-full">
+                    #{tag}
+                  </span>
+                ))}
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
+        </CardContent>
 
-      {/* Skeleton overlay — hides instantly when content is ready */}
+        {/* Sticky footer with Live Demo & GitHub links */}
+        <div className="sticky bottom-0 bg-(--background) border-t border-gray-200 dark:border-gray-700 p-4">
+          <div className="flex gap-4">
+            <Button asChild className="flex-1 border">
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2"
+              >
+                <ExternalLink size={18} />
+                Live Demo
+              </a>
+            </Button>
+            <Button asChild variant="primary" className="flex-1 border">
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2"
+              >
+                <Github size={18} />
+                View Code
+              </a>
+            </Button>
+          </div>
+        </div>
+      </Card>
+      
       {showSkeleton && (
         <div className="absolute inset-0 z-[60] pointer-events-none">
           <ProjectModalSkeleton />
@@ -178,6 +177,6 @@ export default function ProjectModal({ project }: ProjectModalProps) {
         <div className="absolute inset-0 z-[70] bg-white dark:bg-[#110011] animate-flash pointer-events-none" />
       )}
 
-          </div>
+    </div>
   )
 }
