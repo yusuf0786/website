@@ -66,8 +66,16 @@ export default function Header() {
           href="/"
           className={`text-2xl font-bold ${isScrolled ? "dark:text-white" : "text-[#a6a6a6]"}`}
           onClick={(e)=> {
-            e.preventDefault();
-            scrollToSection("home");
+            if (
+              e.button === 0 &&
+              !e.metaKey &&
+              !e.ctrlKey &&
+              !e.shiftKey &&
+              !e.altKey
+            ) {
+              e.preventDefault();
+              scrollToSection("home");
+            }
           }}
         >
           Portfolio
