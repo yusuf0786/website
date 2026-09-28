@@ -23,7 +23,7 @@ export default function Hero() {
     >
       {/* Background image with overlay */}
       <Image
-        src="/banner-bg.jpg"
+        src="/banner-bg.png"
         alt="Hero background"
         fill
         className="object-cover"
@@ -32,7 +32,7 @@ export default function Hero() {
       />
 
       {/* Dark overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/80" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/70" />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white">

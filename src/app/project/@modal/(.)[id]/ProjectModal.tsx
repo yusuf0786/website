@@ -83,11 +83,11 @@ export default function ProjectModal({ project }: ProjectModalProps) {
           ref={modalRef}
           className="w-full max-w-4xl max-h-[68vh] md:max-h-[90vh] overflow-hidden m-4 animate-in fade-in-0 duration-500 shadow-2xl flex flex-col relative bg-background scrollbar-custom"
         >
-        <CardContent className="p-2 md:p-4 flex-1 overflow-y-auto" ref={scrollContainerRef}>
+        <CardContent className="py-2 px-4 md:p-4 flex-1 overflow-y-auto" ref={scrollContainerRef}>
           <Button
             variant="ghost"
             size="icon"
-            className="absolute top-3 right-5 z-10 shadow-lg"
+            className="absolute top-3 right-3 z-10 shadow-lg"
             onClick={() => router.back()}
           >
             <X size={20} />
