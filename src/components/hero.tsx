@@ -21,18 +21,26 @@ export default function Hero() {
       ref={sectionRef}
       className="min-h-screen flex items-center justify-center relative opacity-0 transition-opacity duration-1000 overflow-hidden"
     >
-      {/* Background image with overlay */}
-      <Image
-        src="/banner-bg.jpg"
-        alt="Hero background"
-        fill
-        className="object-cover"
-        priority
-        quality={85}
-      />
+      <picture>
+        <source
+          media="(max-width: 767px)"
+          srcSet="/banner-bg-mobile.png"
+        />
+        <source
+          srcSet="/banner-bg.png"
+        />
+        <Image
+          src="/banner-bg.png"
+          alt="Hero background"
+          fill
+          className="object-cover"
+          priority
+          quality={85}
+        />
+      </picture>
 
       {/* Dark overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/80" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/70" />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white">

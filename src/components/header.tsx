@@ -104,12 +104,12 @@ export default function Header() {
       {/* Mobile Navigation Menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-white/90 dark:bg-(--background) shadow-lg">
-          <div className="container mx-auto px-4 py-4 flex flex-col space-y-4 items-start">
+          <div className="container mx-auto pt-4 flex flex-col space-y-4 items-start">
             {["home", "about", "projects", "skills", "contact"].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(item)}
-                className="text-lg font-medium pb-1 transition-colors capitalize dark:text-white"
+                className="mb-0 px-4 text-lg font-medium pb-4 transition-colors capitalize dark:text-white w-full text-left"
               >
                 {item}
               </button>
