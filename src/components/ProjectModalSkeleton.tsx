@@ -7,7 +7,7 @@ import { X } from "lucide-react";
 export default function ProjectModalSkeleton() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-transparent">
-      <Card className="w-full max-w-4xl max-h-[90vh] m-4 overflow-hidden bg-background scrollbar-custom">
+      <Card className="w-full max-w-4xl max-h-[68vh] md:max-h-[90vh] m-4 overflow-hidden bg-background scrollbar-custom">
         <CardContent className="p-0 relative">
           <Button
             variant="ghost"
