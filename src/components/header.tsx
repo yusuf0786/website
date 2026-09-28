@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 
 export default function Header() {
   const router = useRouter()
@@ -87,7 +88,7 @@ export default function Header() {
             <button
               key={item}
               onClick={() => scrollToSection(item)}
-              className={`text-base font-medium hover:text-primary transition-colors capitalize cursor-pointer ${isScrolled ? "dark:text-white" : "text-[#a6a6a6]"}`}
+              className={`text-base font-medium hover:text-[coral] transition-colors duration-300 capitalize cursor-pointer ${isScrolled ? "dark:text-white" : "dark:hover:text-white text-[#a6a6a6]"}`}
             >
               {item}
             </button>
@@ -95,20 +96,20 @@ export default function Header() {
         </nav>
 
         {/* Mobile Navigation Toggle */}
-        <Button variant="ghost" size="icon" className={`md:hidden ${isScrolled ? "dark:text-white" : "text-[#a6a6a6]"} ${isMenuOpen ? "border" : ""}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <Button variant="ghost" size="icon" className={cn("md:hidden", isMenuOpen ? "border" : "")} onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </Button>
       </div>
 
       {/* Mobile Navigation Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-(--background) shadow-lg">
-          <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+        <div className="md:hidden bg-white/90 dark:bg-(--background) shadow-lg">
+          <div className="container mx-auto px-4 py-4 flex flex-col space-y-4 items-start">
             {["home", "about", "projects", "skills", "contact"].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(item)}
-                className="text-base font-medium py-2 hover:text-primary transition-colors capitalize dark:text-white"
+                className="text-lg font-medium pb-1 transition-colors capitalize dark:text-white"
               >
                 {item}
               </button>

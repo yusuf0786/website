@@ -49,72 +49,70 @@ export default function ProjectContent({ project }: ProjectContentProps) {
 
   return (
     <div ref={refElement} className="flex flex-col animate-in fade-in-0 duration-300 pt-16 bg-background">
-        <>
-            <div className="aspect-video-undefined overflow-hidden w-full relative p-4">
-                <Image
-                src={project.image || "/placeholder.svg"}
-                alt={project.title}
-                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 shadow-lg rounded-lg"
-                width={1280}
-                height={720}
-                priority
-                decoding="async"
-                />
-                <div className="absolute top-4 left-4">
-                    <span className="bg-[#ffffff99] dark:bg-[#00000099] text-black dark:text-white shadow-lg text-sm font-medium px-3 py-1 rounded flex items-center gap-1">
-                        <Tag size={14} />
-                        {project.category}
+        <div className="aspect-video-undefined overflow-hidden w-full relative p-4">
+            <Image
+            src={project.image || "/placeholder.svg"}
+            alt={project.title}
+            className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 shadow-lg rounded-lg"
+            width={1280}
+            height={720}
+            priority
+            decoding="async"
+            />
+            <div className="absolute top-4 left-4">
+                <span className="bg-[#ffffff99] dark:bg-[#00000099] text-black dark:text-white shadow-lg text-sm font-medium px-3 py-1 rounded flex items-center tracking-wide gap-1">
+                    <Tag size={14} />
+                    {project.category}
+                </span>
+            </div>
+        </div>
+        <div className="p-6 pt-2 text-foreground">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3 tracking-wider">{project.title}</h2>
+
+            <div className="text-sm md:text-lg mb-4 leading-relaxed">
+                {project.descriptionMdx ? (
+                <MDXRemote {...project.descriptionMdx} />
+                ) : (
+                <p>{project.description}</p>
+                )}
+            </div>
+
+            <div className="mb-6">
+                <h3 className="text-lg font-semibold mb-3">Technologies Used</h3>
+                <div className="flex flex-wrap gap-2">
+                {project.tags.map((tag, index) => (
+                    <span key={index} className="text-sm font-medium bg-[#ffffff99] dark:bg-[#00000099] text-primary shadow px-3 py-1 rounded-full">
+                    #{tag}
                     </span>
+                ))}
                 </div>
             </div>
-            <div className="p-6 text-foreground">
-                <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
 
-                <div className="mb-4 leading-relaxed">
-                    {project.descriptionMdx ? (
-                    <MDXRemote {...project.descriptionMdx} />
-                    ) : (
-                    <p>{project.description}</p>
-                    )}
-                </div>
-
-                <div className="mb-6">
-                    <h3 className="text-lg font-semibold mb-3">Technologies Used</h3>
-                    <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, index) => (
-                        <span key={index} className="text-sm font-medium bg-[#ffffff99] dark:bg-[#00000099] text-primary shadow px-3 py-1 rounded-full">
-                        #{tag}
-                        </span>
-                    ))}
-                    </div>
-                </div>
-
-                <div className="flex gap-4">
-                    <Button asChild className="flex-1 border">
-                    <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2"
-                    >
-                        <ExternalLink size={18} />
-                        Live Demo
-                    </a>
-                    </Button>
-                    <Button asChild variant="primary" className="flex-1">
-                    <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2"
-                    >
-                        <Github size={18} />
-                        View Code
-                    </a>
-                    </Button>
-                </div>
+            <div className="flex gap-4">
+                <Button asChild className="flex-1 border">
+                <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2"
+                >
+                    <ExternalLink size={18} />
+                    Live Demo
+                </a>
+                </Button>
+                <Button asChild variant="primary" className="flex-1">
+                <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2"
+                >
+                    <Github size={18} />
+                    View Code
+                </a>
+                </Button>
             </div>
-        </>
+        </div>
     </div>
   )
 }

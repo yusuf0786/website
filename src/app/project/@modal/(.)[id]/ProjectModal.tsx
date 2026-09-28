@@ -81,7 +81,7 @@ export default function ProjectModal({ project }: ProjectModalProps) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in-0 duration-500">
       <Card
           ref={modalRef}
-          className="w-full max-w-4xl max-h-[90vh] overflow-hidden m-4 animate-in fade-in-0 duration-500 shadow-2xl flex flex-col relative bg-background scrollbar-custom"
+          className="w-full max-w-4xl max-h-[68vh] md:max-h-[90vh] overflow-hidden m-4 animate-in fade-in-0 duration-500 shadow-2xl flex flex-col relative bg-background scrollbar-custom"
         >
         <CardContent className="p-2 md:p-4 flex-1 overflow-y-auto" ref={scrollContainerRef}>
           <Button
@@ -94,7 +94,7 @@ export default function ProjectModal({ project }: ProjectModalProps) {
           </Button>
           <div className="relative text-foreground">
 
-            <div className="aspect-video overflow-hidden rounded-t-lg relative transition-[transform, opacity, height] duration-500 ease-in-out translate-x-0 mb-3 rounded">
+            <div className="aspect-video overflow-hidden rounded-t-lg relative transition-[transform, opacity, height] duration-500 ease-in-out translate-x-0 mb-4 rounded">
               <Image
                 src={project.image || "/placeholder.svg"}
                 alt={project.title}
@@ -107,16 +107,16 @@ export default function ProjectModal({ project }: ProjectModalProps) {
                 // decoding="async" // decode already loaded image asyncly
               />
               <div className="absolute top-4 left-4">
-                <span className="bg-[#ffffff99] dark:bg-[#00000099] text-black dark:text-white shadow-lg text-sm font-medium px-3 py-1 rounded flex items-center gap-1">
+                <span className="bg-[#ffffff99] dark:bg-[#00000099] text-black dark:text-white shadow-lg text-sm font-medium px-3 py-1 rounded flex items-center gap-1 tracking-wide">
                   <Tag size={14} />
                   {project.category}
                 </span>
               </div>
             </div>
 
-            <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-3 tracking-wider">{project.title}</h2>
 
-            <div className="mb-4 leading-relaxed">
+            <div className="text-sm md:text-lg mb-4 leading-relaxed">
               {project.descriptionMdx ? (
                 <MDXRemote {...project.descriptionMdx} />
               ) : (
@@ -128,7 +128,7 @@ export default function ProjectModal({ project }: ProjectModalProps) {
               <h3 className="text-lg font-semibold mb-3">Technologies Used</h3>
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag, index) => (
-                  <span key={index} className="text-sm font-medium bg-[#ffffff99] dark:bg-[#00000099] text-primary shadow px-3 py-1 rounded-full">
+                  <span key={index} className="text-sm font-medium bg-[#ffffff99] dark:bg-[#00000099] text-primary tracking-wide shadow px-3 py-1 rounded-full">
                     #{tag}
                   </span>
                 ))}
@@ -145,7 +145,7 @@ export default function ProjectModal({ project }: ProjectModalProps) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2"
+                className="flex items-center justify-center gap-2 text-inherit"
               >
                 <ExternalLink size={18} />
                 Live Demo

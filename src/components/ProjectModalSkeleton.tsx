@@ -12,7 +12,7 @@ export default function ProjectModalSkeleton() {
           <Button
             variant="ghost"
             size="icon"
-            className="absolute top-2 right-5 z-10 shadow-lg"
+            className="absolute top-3 right-3 z-10 shadow-lg"
           >
             <X size={20} />
           </Button>
