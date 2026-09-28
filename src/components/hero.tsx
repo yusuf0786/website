@@ -21,7 +21,6 @@ export default function Hero() {
       ref={sectionRef}
       className="min-h-screen flex items-center justify-center relative opacity-0 transition-opacity duration-1000 overflow-hidden"
     >
-      {/* Background image with overlay */}
       <picture>
         <source
           media="(max-width: 767px)"
