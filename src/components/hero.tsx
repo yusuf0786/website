@@ -4,6 +4,7 @@ import { ArrowDown } from "lucide-react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 export default function Hero() {
   const sectionRef = useIntersectionObserver()
@@ -15,6 +16,8 @@ export default function Hero() {
     }
   }
 
+  const isMobile = useIsMobile();
+
   return (
     <section
       id="home"
@@ -23,7 +26,7 @@ export default function Hero() {
     >
       {/* Background image with overlay */}
       <Image
-        src="/banner-bg.png"
+        src={isMobile ? "/banner-bg-mobile.png" : "/banner-bg.png"}
         alt="Hero background"
         fill
         className="object-cover"
