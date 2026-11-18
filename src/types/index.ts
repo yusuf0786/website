@@ -1,4 +1,5 @@
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { ProjectCategory } from "@/lib/projects";
 
 export type Project = {
   id: string;
@@ -11,3 +12,8 @@ export type Project = {
   liveUrl: string;
   githubUrl: string;
 };
+
+export interface ProjectFiltersProps {
+  activeCategory: ProjectCategory
+  onCategoryChange: (category: ProjectCategory) => void
+}
