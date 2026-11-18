@@ -1,12 +1,8 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { projectCategories, type ProjectCategory } from "@/lib/projects"
-
-interface ProjectFiltersProps {
-  activeCategory: ProjectCategory
-  onCategoryChange: (category: ProjectCategory) => void
-}
+import { projectCategories } from "@/lib/projects"
+import { ProjectFiltersProps } from "@/types" 
 
 export default function ProjectFilters({ activeCategory, onCategoryChange }: ProjectFiltersProps) {
   return (
