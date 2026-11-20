@@ -1,137 +1,115 @@
-"use client"
+"use client";
 
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver"
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { Code2, Server, Wrench, Sparkles } from "lucide-react";
+
+const SKILL_CATEGORIES = [
+  {
+    title: "Frontend Engineering",
+    icon: Code2,
+    skills: [
+      "React.js",
+      "Next.js (App Router)",
+      "TypeScript",
+      "JavaScript (ESNext)",
+      "Tailwind CSS v4",
+      "HTML5 / Semantic Web",
+      "CSS3 / SCSS",
+      "Redux / Context API",
+      "Responsive Layouts",
+    ],
+  },
+  {
+    title: "Backend & Database",
+    icon: Server,
+    skills: [
+      "Node.js",
+      "Express.js",
+      "RESTful APIs",
+      "MongoDB",
+      "Mongoose",
+      "EJS",
+      "JWT Authentication",
+    ],
+  },
+  {
+    title: "Tools & Workflow",
+    icon: Wrench,
+    skills: [
+      "Git & GitHub",
+      "Next-MDX",
+      "Vercel",
+      "ESLint",
+      "Lighthouse Auditing",
+      "Cross-Browser Compatibility",
+    ],
+  },
+  {
+    title: "Modern & Agentic Practices",
+    icon: Sparkles,
+    skills: [
+      "Agentic AI Development",
+      "Core Web Vitals Optimization",
+      "Modern Web Platform Standards",
+      "Design Systems & Shadcn",
+      "Problem Solving",
+      "Collaborative Delivery",
+    ],
+  },
+];
 
 export default function Skills() {
-  const sectionRef = useIntersectionObserver({
-    onIntersect: () => {
-      // Animate progress bars when section is visible
-      const progressBars = document.querySelectorAll("[data-progress]")
-      progressBars.forEach((bar) => {
-        const value = bar.getAttribute("data-progress")
-        if (value) {
-          setTimeout(() => {
-            ;(bar as HTMLElement).style.width = value
-          }, 300)
-        }
-      })
-    },
-  })
-
-  const technicalSkills = [
-    { name: "HTML/CSS", percentage: 95 },
-    { name: "JavaScript", percentage: 95 },
-    { name: "React", percentage: 95 },
-    { name: "Next.js", percentage: 95 },
-    { name: "TypeScript", percentage: 85 },
-    { name: "TailwindCSS", percentage: 85 },
-  ]
-
-  // const softSkills = [
-  //   { name: "Communication", percentage: 90 },
-  //   { name: "Teamwork", percentage: 90 },
-  //   { name: "Problem Solving", percentage: 95 },
-  //   { name: "Time Management", percentage: 90 },
-  // ]
+  const sectionRef = useIntersectionObserver();
 
   return (
     <section
       id="skills"
       ref={sectionRef}
-      className="py-20 bg-(--background)"
+      className="py-24 bg-background opacity-0 transition-opacity duration-700"
     >
       <div className="container mx-auto px-4">
-        <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-[#fdfdfd80]">My Skills</h2>
-          <div className="w-20 h-1 bg-primary mx-auto"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Here are my technical and soft skills that I&rsquo;ve developed over the years.
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-foreground">
+            Technical Skills & Technologies
+          </h2>
+          <div className="w-16 h-1 bg-primary mx-auto rounded-full mb-4" />
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base sm:text-lg">
+            A comprehensive overview of technologies, frameworks, and methodologies I leverage to build robust web solutions.
           </p>
         </div>
 
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-12"> */}
-        <div className="grid grid-cols-1 gap-12">
-          <div className="hidden">
-            <h3 className="text-2xl font-bold mb-6 dark:text-[#fdfdfd80]">Technical Skills</h3>
-            <div className="space-y-6">
-              {technicalSkills.map((skill, index) => (
-                <div key={index}>
-                  <div className="flex justify-between mb-2 dark:text-[#fdfdfd80]">
-                    <span className="font-medium">{skill.name}</span>
-                    <span className="text-primary">{skill.percentage}%</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {SKILL_CATEGORIES.map((category, index) => {
+            const Icon = category.icon;
+            return (
+              <div
+                key={index}
+                className="p-6 rounded-xl border border-border/80 bg-card hover:border-primary/40 hover:shadow-md transition-all duration-300"
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2.5 rounded-lg bg-primary/10 text-primary">
+                    <Icon size={22} />
                   </div>
-                  <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-[#bdbdbd] dark:bg-white rounded-full transition-all duration-1000 ease-out"
-                      data-progress={`${skill.percentage}%`}
-                      style={{ width: "0%" }}
-                    ></div>
-                  </div>
+                  <h3 className="text-xl font-bold text-foreground">
+                    {category.title}
+                  </h3>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          <div>
-            {/* <h3 className="text-2xl font-bold mb-6 dark:text-[#fdfdfd80]">Soft Skills</h3>
-            <div className="space-y-6">
-              {softSkills.map((skill, index) => (
-                <div key={index}>
-                  <div className="flex justify-between mb-2 dark:text-[#fdfdfd80]">
-                    <span className="font-medium">{skill.name}</span>
-                    <span className="text-primary">{skill.percentage}%</span>
-                  </div>
-                  <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-[#bdbdbd] dark:bg-white rounded-full transition-all duration-1000 ease-out"
-                      data-progress={`${skill.percentage}%`}
-                      style={{ width: "0%" }}
-                    ></div>
-                  </div>
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill, sIdx) => (
+                    <span
+                      key={sIdx}
+                      className="px-3 py-1.5 rounded-lg text-sm font-medium bg-muted/60 hover:bg-primary/10 hover:text-primary text-foreground border border-border/40 transition-colors"
+                    >
+                      {skill}
+                    </span>
+                  ))}
                 </div>
-              ))}
-            </div> */}
-
-            <div className="mt-12">
-              <h3 className="text-2xl font-bold mb-6 dark:text-[#fdfdfd80]">Tools & Technologies</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                {[
-                  "HTML5",
-                  "CSS3",
-                  "Bootstrap",
-                  "JavaScript",
-                  "TypeScript",
-                  "jQuery",
-                  "SASS",
-                  "Tailwind CSS",
-                  "ReactJS",
-                  "Redux",
-                  "NextJS",
-                  "NodeJS",
-                  "ExpressJS",
-                  "EJS",
-                  "MongoDB",
-                  "Mongoose",
-                  "Git",
-                  "Github",
-                  "Agentic AI",
-                  "Effective Communication",
-                  "Teamwork",
-                  "Problem Solving",
-                  "Time Management",
-                ].map((tool, index) => (
-                  <div
-                    key={index}
-                    className="bg-white dark:bg-(--background) text-foreground p-4 text-center shadow-sm border border-gray-200 dark:border-gray-700 rounded-lg flex items-center justify-center"
-                  >
-                    {tool}
-                  </div>
-                ))}
               </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>
-  )
+  );
 }

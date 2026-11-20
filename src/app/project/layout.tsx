@@ -1,12 +1,16 @@
-export default function ProjectLayout(props : {
+import React from "react";
+
+export default function ProjectLayout({
+  children,
+  modal,
+}: {
   children: React.ReactNode;
   modal: React.ReactNode;
 }) {
-  
   return (
     <>
-      {props.children}
-      {props.modal}
+      {children}
+      {modal}
     </>
   );
 }

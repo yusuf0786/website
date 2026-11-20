@@ -1,19 +1,19 @@
-import About from "@/components/about";
-import Contact from "@/components/contact";
-import Hero from "@/components/hero";
-import Skills from "@/components/skills";
 import { Suspense } from "react";
+import Hero from "@/components/hero";
+import About from "@/components/about";
+import Skills from "@/components/skills";
+import Contact from "@/components/contact";
 import ScrollHandler from "@/components/ScrollHandler";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-(--background)">
+    <main className="min-h-screen bg-background text-foreground">
       <Hero />
       <About />
       <Skills />
       <Contact />
 
-      {/* Suspense wrapper around searchParams usage */}
+      {/* Handles smooth query-based section scrolling on navigation */}
       <Suspense fallback={null}>
         <ScrollHandler />
       </Suspense>
