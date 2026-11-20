@@ -15,7 +15,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden isolate"
     >
       <picture>
         <source media="(max-width: 767px)" srcSet="/banner-bg-mobile.png" />
@@ -37,7 +37,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
         
-        <h1 className="text-black dark:text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">
+        <h1 className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">
           Hello, I&rsquo;m <span className="text-primary drop-shadow-sm">Yusuf Ansari</span>
         </h1>
         <p className="text-lg sm:text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-gray-200 dark:text-gray-500 font-light leading-relaxed">

@@ -22,6 +22,9 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const hasDarkTopSection = pathname === "/";
+  const useForeground = isScrolled || !hasDarkTopSection;
+
   useEffect(() => {
     let ticking = false;
 
@@ -79,7 +82,7 @@ export default function Header() {
           href="/"
           className={cn(
             "text-xl sm:text-2xl font-bold tracking-tight transition-colors",
-            isScrolled ? "text-foreground" : "text-white"
+            useForeground ? "text-foreground" : "text-white"
           )}
           onClick={(e) => {
             if (
@@ -109,7 +112,7 @@ export default function Header() {
               onClick={() => scrollToSection(item.id)}
               className={cn(
                 "px-3 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer",
-                isScrolled
+                useForeground
                   ? "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                   : "text-white/80 hover:text-white hover:bg-white/10"
               )}
@@ -130,7 +133,7 @@ export default function Header() {
             size="icon"
             className={cn(
               "rounded-md",
-              isScrolled ? "text-foreground" : "text-white"
+              useForeground ? "text-foreground" : "text-white"
             )}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-expanded={isMenuOpen}

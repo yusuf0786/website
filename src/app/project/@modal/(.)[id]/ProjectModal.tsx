@@ -26,7 +26,9 @@ export default function ProjectModal({ project }: ProjectModalProps) {
     }
 
     const handleClose = () => {
-      router.back();
+      if (!dialog.open) {
+        router.back();
+      }
     };
 
     const handleCancel = (e: Event) => {

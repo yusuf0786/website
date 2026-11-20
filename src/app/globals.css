@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   /* Automatically adapt native UI to system and user color preferences */
   color-scheme: light dark;

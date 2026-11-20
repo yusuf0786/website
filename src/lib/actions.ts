@@ -9,7 +9,6 @@ import { ContactFormSchema } from '@/lib/schemas'
 
 type ContactFormInputs = z.infer<typeof ContactFormSchema>
 // type NewsletterFormInputs = z.infer<typeof NewsletterFormSchema>
-const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function sendEmail(data: ContactFormInputs) {
   const result = ContactFormSchema.safeParse(data)
@@ -19,9 +18,10 @@ export async function sendEmail(data: ContactFormInputs) {
   }
 
   try {
+    const resend = new Resend(process.env.RESEND_API_KEY)
     const { name, email, subject, message } = result.data
     const { data, error } = await resend.emails.send({
-        from: 'Yusuf <webdev.yusufansari@gmail.com>',
+        from: 'Yusuf <onboarding@resend.dev>',
         to: ['webdev.yusufansari@gmail.com'], 
         replyTo: [email], 
         // cc: ['webdev.yusufansari@gmail.com'],

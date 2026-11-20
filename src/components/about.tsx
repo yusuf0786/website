@@ -62,7 +62,7 @@ export default function About() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
           <div className="lg:col-span-5 flex justify-center h-full">
-            <div className="relative w-full h-auto rounded-2xl overflow-hidden ring-4 ring-primary/20 shadow-xl">
+            <div className="relative w-full aspect-square rounded-2xl overflow-hidden ring-4 ring-primary/20 shadow-xl">
               <Image
                 src="/yusuf-HTT2411YA027.jpg"
                 alt="Yusuf Ansari - Front-End Web Developer"
