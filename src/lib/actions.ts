@@ -21,7 +21,7 @@ export async function sendEmail(data: ContactFormInputs) {
     const resend = new Resend(process.env.RESEND_API_KEY)
     const { name, email, subject, message } = result.data
     const { data, error } = await resend.emails.send({
-        from: 'Yusuf <onboarding@resend.dev>',
+        from: 'Yusuf <webdev.yusufansari@gmail.com>',
         to: ['webdev.yusufansari@gmail.com'], 
         replyTo: [email], 
         // cc: ['webdev.yusufansari@gmail.com'],
