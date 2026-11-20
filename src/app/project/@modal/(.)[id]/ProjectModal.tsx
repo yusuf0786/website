@@ -1,182 +1,177 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { X, ExternalLink, Github, Tag } from "lucide-react"
+import { X, ExternalLink, Github, Tag } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote";
-import ProjectModalSkeleton from "@/components/ProjectModalSkeleton";
 import { Project } from "@/types";
-
-let hasFirstOpened = false;
 
 type ProjectModalProps = {
   project: Project;
 };
 
 export default function ProjectModal({ project }: ProjectModalProps) {
-  const isFirstOpen = !hasFirstOpened;
-  if (isFirstOpen) hasFirstOpened = true;
   const router = useRouter();
-  const modalRef = useRef<HTMLDivElement>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
-    document.body.style.overflow = "hidden"
+    const dialog = dialogRef.current;
+    if (!dialog) return;
 
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        router.back()
-      }
+    if (!dialog.open) {
+      dialog.showModal();
     }
 
-    const handleClickOutside = (e: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-        router.back()
+    const handleClose = () => {
+      if (!dialog.open) {
+        router.back();
       }
-    }
+    };
 
-    document.addEventListener("keydown", handleEscape)
-    document.addEventListener("mousedown", handleClickOutside)
+    const handleCancel = (e: Event) => {
+      e.preventDefault();
+      router.back();
+    };
+
+    // Click on dialog backdrop dismisses modal per modern web guidance
+    const handleBackdropClick = (e: MouseEvent) => {
+      const rect = dialog.getBoundingClientRect();
+      const isInDialog =
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom;
+
+      if (!isInDialog) {
+        router.back();
+      }
+    };
+
+    dialog.addEventListener("close", handleClose);
+    dialog.addEventListener("cancel", handleCancel);
+    dialog.addEventListener("click", handleBackdropClick);
 
     return () => {
-      document.body.style.overflow = "unset"
-      document.removeEventListener("keydown", handleEscape)
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [router])
-
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [minElapsed, setMinElapsed] = useState(false);
-  const [hideSkeleton, setHideSkeleton] = useState(false);
-  const [showFlash, setShowFlash] = useState(false);
-
-  // Minimum load timer: 3ms only on very first open ever
-  useEffect(() => {
-    if (isFirstOpen) {
-      const timer = setTimeout(() => setMinElapsed(true), 3);
-      return () => clearTimeout(timer);
-    } else {
-      setMinElapsed(true);
-    }
-  }, [isFirstOpen]);
-
-  // When content is ready: hide skeleton instantly and trigger smooth flash.
-  useEffect(() => {
-    if (minElapsed && imageLoaded && !hideSkeleton) {
-      setHideSkeleton(true);
-      setShowFlash(true);
-      const timer = setTimeout(() => setShowFlash(false), 800);
-      return () => clearTimeout(timer);
-    }
-  }, [minElapsed, imageLoaded, hideSkeleton]);
-
-  const showSkeleton = !hideSkeleton;
+      dialog.removeEventListener("close", handleClose);
+      dialog.removeEventListener("cancel", handleCancel);
+      dialog.removeEventListener("click", handleBackdropClick);
+      if (dialog.open) {
+        dialog.close();
+      }
+    };
+  }, [router]);
 
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in-0 duration-500">
-      <Card
-          ref={modalRef}
-          className="w-full max-w-4xl max-h-[68vh] md:max-h-[90vh] overflow-hidden m-4 animate-in fade-in-0 duration-500 shadow-2xl flex flex-col relative bg-background scrollbar-custom"
+    <dialog
+      ref={dialogRef}
+      aria-labelledby="project-modal-title"
+      className="m-auto rounded-2xl max-w-4xl w-[calc(100%-2rem)] max-h-[90vh] bg-card text-card-foreground p-0 border border-border/80 shadow-2xl overflow-hidden backdrop:bg-black/60 backdrop:backdrop-blur-xs overscroll-contain animate-in fade-in-0 duration-300 open:flex open:flex-col"
+    >
+      {/* Header bar with close button */}
+      <div className="relative flex-1 overflow-y-auto scrollbar-custom p-6 sm:p-8">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="absolute top-4 right-4 z-20 rounded-full bg-background/80 hover:bg-background shadow-xs border border-border/50 text-foreground"
+          onClick={() => router.back()}
+          aria-label="Close project modal"
         >
-        <CardContent className="py-2 px-4 md:p-4 flex-1 overflow-y-auto" ref={scrollContainerRef}>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute top-3 right-3 z-10 shadow-lg"
-            onClick={() => router.back()}
+          <X size={18} />
+        </Button>
+
+        {/* Media Preview */}
+        <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-muted mb-6 shadow-sm">
+          {!imageLoaded && (
+            <div className="absolute inset-0 skeleton-bar" />
+          )}
+          <Image
+            src={project.image || "/placeholder.svg"}
+            alt={project.title}
+            fill
+            className={`object-cover transition-opacity duration-300 ${
+              imageLoaded ? "opacity-100" : "opacity-0"
+            }`}
+            onLoad={() => setImageLoaded(true)}
+            priority
+            sizes="(max-width: 896px) 100vw, 896px"
+          />
+          <div className="absolute top-4 left-4 z-10">
+            <span className="bg-background/90 text-foreground backdrop-blur-xs text-xs sm:text-sm font-semibold px-3 py-1 rounded-full shadow-xs border border-border/50 flex items-center gap-1.5">
+              <Tag size={13} className="text-primary" />
+              {project.category}
+            </span>
+          </div>
+        </div>
+
+        {/* Project Content */}
+        <h2
+          id="project-modal-title"
+          className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground mb-4"
+        >
+          {project.title}
+        </h2>
+
+        <div className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-6 space-y-4">
+          {project.descriptionMdx ? (
+            <MDXRemote {...project.descriptionMdx} />
+          ) : (
+            <p>{project.description}</p>
+          )}
+        </div>
+
+        {/* Tags */}
+        <div className="mb-6">
+          <h3 className="text-xs uppercase font-bold tracking-wider text-muted-foreground mb-3">
+            Technologies &amp; Libraries
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map((tag, index) => (
+              <span
+                key={index}
+                className="text-xs font-semibold px-2.5 py-1 rounded-md bg-muted text-foreground border border-border/40"
+              >
+                #{tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Action Footer */}
+      <div className="p-4 sm:p-6 bg-muted/40 border-t border-border/80 flex flex-col sm:flex-row gap-3">
+        <Button asChild size="lg" className="flex-1 font-semibold gap-2">
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center"
           >
-            <X size={20} />
-          </Button>
-          <div className="relative text-foreground">
-
-            <div className="aspect-video overflow-hidden rounded-t-lg relative transition-[transform, opacity, height] duration-500 ease-in-out translate-x-0 mb-4 rounded">
-              <Image
-                src={project.image || "/placeholder.svg"}
-                alt={project.title}
-                className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
-                fill
-                onLoad={() => setImageLoaded(true)}
-                // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                priority // load early
-                // loading="lazy" // dealay loading image itself
-                // decoding="async" // decode already loaded image asyncly
-              />
-              <div className="absolute top-4 left-4">
-                <span className="bg-[#ffffff99] dark:bg-[#00000099] text-black dark:text-white shadow-lg text-sm font-medium px-3 py-1 rounded flex items-center gap-1 tracking-wide">
-                  <Tag size={14} />
-                  {project.category}
-                </span>
-              </div>
-            </div>
-
-            <h2 className="text-2xl md:text-3xl font-bold mb-3 tracking-wider">{project.title}</h2>
-
-            <div className="text-sm md:text-lg mb-4 leading-relaxed">
-              {project.descriptionMdx ? (
-                <MDXRemote {...project.descriptionMdx} />
-              ) : (
-                <p>{project.description}</p>
-              )}
-            </div>
-
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-3">Technologies Used</h3>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag, index) => (
-                  <span key={index} className="text-sm font-medium bg-[#ffffff99] dark:bg-[#00000099] text-primary tracking-wide shadow px-3 py-1 rounded-full">
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </CardContent>
-
-        {/* Sticky footer with Live Demo & GitHub links */}
-        <div className="sticky bottom-0 bg-(--background) border-t border-gray-200 dark:border-gray-700 p-4">
-          <div className="flex gap-4">
-            <Button asChild className="flex-1 border">
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 text-inherit"
-              >
-                <ExternalLink size={18} />
-                Live Demo
-              </a>
-            </Button>
-            <Button asChild variant="primary" className="flex-1 border">
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2"
-              >
-                <Github size={18} />
-                View Code
-              </a>
-            </Button>
-          </div>
-        </div>
-      </Card>
-      
-      {showSkeleton && (
-        <div className="absolute inset-0 z-[60] pointer-events-none">
-          <ProjectModalSkeleton />
-        </div>
-      )}
-
-      {/* Flash appears when skeleton hides, fades smoothly */}
-      {showFlash && (
-        <div className="absolute inset-0 z-[70] bg-white dark:bg-[#110011] animate-flash pointer-events-none" />
-      )}
-
-    </div>
-  )
+            <ExternalLink size={17} />
+            Live Demo
+          </a>
+        </Button>
+        <Button
+          asChild
+          variant="outline"
+          size="lg"
+          className="flex-1 font-semibold gap-2 border-border"
+        >
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center"
+          >
+            <Github size={17} />
+            Source Code
+          </a>
+        </Button>
+      </div>
+    </dialog>
+  );
 }

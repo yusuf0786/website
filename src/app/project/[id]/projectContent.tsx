@@ -1,12 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react"
-import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Tag } from "lucide-react"
+import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { ArrowLeft, ExternalLink, Github, Tag } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote";
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { Button } from "@/components/ui/button";
 import { Project } from "@/types";
 
 type ProjectContentProps = {
@@ -14,105 +12,95 @@ type ProjectContentProps = {
 };
 
 export default function ProjectContent({ project }: ProjectContentProps) {
-  const refElement = useIntersectionObserver<HTMLDivElement>()
-  const router = useRouter();
-  const modalRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // document.body.style.overflow = "hidden"
-
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        router.back()
-      }
-    }
-
-    const handleClickOutside = (e: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-        router.back()
-      }
-    }
-
-    document.addEventListener("keydown", handleEscape)
-    document.addEventListener("mousedown", handleClickOutside)
-
-    return () => {
-      document.body.style.overflow = "unset"
-      document.removeEventListener("keydown", handleEscape)
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [router])
-
-  if (!project) {
-    return null
-  }
+  if (!project) return null;
 
   return (
-    <div ref={refElement} className="flex flex-col animate-in fade-in-0 duration-300 pt-16 bg-background">
-        <div className="aspect-video-undefined overflow-hidden w-full relative p-4">
-            <Image
+    <article className="min-h-screen pt-24 pb-20 bg-background text-foreground">
+      <div className="container mx-auto px-4 max-w-4xl">
+        {/* Navigation Breadcrumb */}
+        <div className="mb-8">
+          <Button asChild variant="ghost" size="sm" className="gap-2">
+            <Link href="/project">
+              <ArrowLeft size={16} />
+              Back to all projects
+            </Link>
+          </Button>
+        </div>
+
+        {/* Hero Image */}
+        <div className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-xl bg-muted mb-8 border border-border/80">
+          <Image
             src={project.image || "/placeholder.svg"}
             alt={project.title}
-            className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 shadow-lg rounded-lg"
-            width={1280}
-            height={720}
+            fill
+            className="object-cover"
             priority
-            decoding="async"
-            />
-            <div className="absolute top-4 left-4">
-                <span className="bg-[#ffffff99] dark:bg-[#00000099] text-black dark:text-white shadow-lg text-sm font-medium px-3 py-1 rounded flex items-center tracking-wide gap-1">
-                    <Tag size={14} />
-                    {project.category}
-                </span>
-            </div>
+            sizes="(max-width: 896px) 100vw, 896px"
+          />
+          <div className="absolute top-4 left-4 z-10">
+            <span className="bg-background/90 text-foreground backdrop-blur-xs text-xs sm:text-sm font-semibold px-3 py-1 rounded-full shadow-xs border border-border/50 flex items-center gap-1.5">
+              <Tag size={13} className="text-primary" />
+              {project.category}
+            </span>
+          </div>
         </div>
-        <div className="p-6 pt-2 text-foreground">
-            <h2 className="text-2xl md:text-3xl font-bold mb-3 tracking-wider">{project.title}</h2>
 
-            <div className="text-sm md:text-lg mb-4 leading-relaxed">
-                {project.descriptionMdx ? (
-                <MDXRemote {...project.descriptionMdx} />
-                ) : (
-                <p>{project.description}</p>
-                )}
-            </div>
+        {/* Title & Actions Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-border">
+          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+            {project.title}
+          </h1>
 
-            <div className="mb-6">
-                <h3 className="text-lg font-semibold mb-3">Technologies Used</h3>
-                <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag, index) => (
-                    <span key={index} className="text-sm font-medium bg-[#ffffff99] dark:bg-[#00000099] text-primary shadow px-3 py-1 rounded-full">
-                    #{tag}
-                    </span>
-                ))}
-                </div>
-            </div>
-
-            <div className="flex gap-4">
-                <Button asChild className="flex-1 border">
-                <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2"
-                >
-                    <ExternalLink size={18} />
-                    Live Demo
-                </a>
-                </Button>
-                <Button asChild variant="primary" className="flex-1">
-                <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2"
-                >
-                    <Github size={18} />
-                    View Code
-                </a>
-                </Button>
-            </div>
+          <div className="flex items-center gap-3">
+            <Button asChild className="gap-2">
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink size={16} />
+                Live Demo
+              </a>
+            </Button>
+            <Button asChild variant="outline" className="gap-2 border-border">
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github size={16} />
+                Code
+              </a>
+            </Button>
+          </div>
         </div>
-    </div>
-  )
+
+        {/* Description & MDX */}
+        <div className="prose dark:prose-invert max-w-none text-muted-foreground leading-relaxed text-base sm:text-lg mb-8 space-y-4">
+          {project.descriptionMdx ? (
+            <MDXRemote {...project.descriptionMdx} />
+          ) : (
+            <p>{project.description}</p>
+          )}
+        </div>
+
+        {/* Technologies Used */}
+        <div className="rounded-xl border border-border/80 bg-card p-6">
+          <h2 className="text-sm uppercase font-bold tracking-wider text-muted-foreground mb-4">
+            Technologies &amp; Libraries Used
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map((tag, index) => (
+              <span
+                key={index}
+                className="text-xs sm:text-sm font-semibold px-3 py-1 rounded-lg bg-muted text-foreground border border-border/40"
+              >
+                #{tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </article>
+  );
 }

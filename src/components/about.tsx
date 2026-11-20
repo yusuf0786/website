@@ -1,171 +1,165 @@
-"use client"
+"use client";
 
-import { User, Mail, MapPin, Briefcase, GraduationCap } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
-import Image from "next/image"
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver"
+import { User, Mail, MapPin, Briefcase } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+
+const EXPERIENCES = [
+  {
+    title: "UI/UX Developer",
+    company: "Convergence IT Services PVT. LTD.",
+    period: "Recent",
+    description:
+      "Developed and maintained responsive web applications, creating modular templates and component extensions with a focus on cross-browser accessibility and performance optimization.",
+  },
+  {
+    title: "Front-End Developer",
+    company: "Octapro Solutions PVT. LTD.",
+    period: "2024 - 2025",
+    description:
+      "Engineered an enterprise CRM frontend with dynamic attendance tracking, REST API integrations, interactive data visualization via ApexCharts, and mobile-optimized offcanvas workflows.",
+  },
+  {
+    title: "UI Developer",
+    company: "InCruiter India PVT. LTD.",
+    period: "2024",
+    description:
+      "Built custom, accessible digital web portals and responsive themes with strict adherence to cross-device compatibility, modern CSS layout standards, and SEO best practices.",
+  },
+  {
+    title: "Front-End Developer",
+    company: "PaperPlane Design Solutions PVT. LTD.",
+    period: "2022 - 2023",
+    description:
+      "Delivered pixel-perfect user interfaces from Figma design specifications using React, modern JavaScript, CSS animation pipelines, and Lighthouse performance auditing.",
+  },
+  {
+    title: "Web Developer Intern",
+    company: "Zobble Solutions PVT. LTD.",
+    period: "2021",
+    description:
+      "Built interactive web interfaces from scratch focusing on clean DOM structure, accessible semantic markup, responsive layouts, and cross-browser bug resolution.",
+  },
+];
 
 export default function About() {
-  const sectionRef = useIntersectionObserver()
+  const sectionRef = useIntersectionObserver();
 
   return (
     <section
       id="about"
       ref={sectionRef}
-      className="py-20 bg-gray-50 dark:bg-(--background) opacity-0 transition-opacity duration-1000"
+      className="py-24 bg-muted/20 opacity-0 transition-opacity duration-700"
     >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-10 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 dark:text-[#fdfdfd80]">About Me</h2>
-          <div className="w-20 h-1 bg-primary mx-auto"></div>
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-foreground">
+            About Me
+          </h2>
+          <div className="w-16 h-1 bg-primary mx-auto rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="aspect-square relative rounded-2xl overflow-hidden border-3 border-primary/20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
+          <div className="lg:col-span-5 flex justify-center h-full">
+            <div className="relative w-full aspect-square rounded-2xl overflow-hidden ring-4 ring-primary/20 shadow-xl">
               <Image
                 src="/yusuf-HTT2411YA027.jpg"
-                alt="Profile"
-                // width={100}
-                // height={100}
-                className="w-full h-auto object-cover"
-                priority
+                alt="Yusuf Ansari - Front-End Web Developer"
                 fill
+                className="object-cover"
+                sizes="(max-width: 640px) 256px, 320px"
               />
             </div>
+          </div>
 
-          <div>
-            <h3 className="text-2xl font-bold mb-4 dark:text-[#fdfdfd80]">Who am I?</h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">
-              Hi! I&rsquo;m a Front-End Web Developer with 4 years of experience building responsive, user-friendly websites and web applications. I specialize in HTML5, CSS3, JavaScript, and modern tools like React.js, Next.js, and TypeScript. I&rsquo;m also skilled in using frameworks and libraries like Bootstrap, TailwindCSS, jQuery, and Sass. I enjoy turning design ideas into clean, functional code and working with Git and GitHub for version control.
+          <div className="lg:col-span-7">
+            <h3 className="text-2xl font-bold mb-4 text-foreground">
+              Passionate Front-End Web Developer
+            </h3>
+            <p className="text-muted-foreground leading-relaxed mb-4 text-base sm:text-lg">
+              Hi! I&rsquo;m a Front-End Web Developer with over 4 years of experience
+              architecting responsive, performant, and user-friendly web applications.
+              I specialize in HTML5, CSS3, modern JavaScript/TypeScript, React.js, and
+              Next.js, crafting scalable component architectures with Tailwind CSS.
             </p>
-            <p className="text-gray-600 dark:text-gray-300 mb-8">
-              My goal is to build applications that are not only visually appealing but also highly functional and
-              user-friendly. I&rsquo;m constantly learning new technologies and techniques to improve my skills and deliver
-              better results.
+            <p className="text-muted-foreground leading-relaxed mb-8 text-base sm:text-lg">
+              My engineering philosophy centers on clean code, progressive enhancement,
+              accessible UX, and staying on the frontier of modern web platform standards
+              and agentic AI-assisted development.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <Card className="border border-gray-500 dark:border-[#fdfdfd80]">
-                <CardContent className="p-4 flex items-center gap-3 dark:text-white">
-                  <User className="text-primary" size={20} />
-                  <span>Yusuf Ansari</span>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <Card className="border border-border/80 bg-card hover:border-primary/40 transition-colors">
+                <CardContent className="p-4 flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-primary/10 text-primary shrink-0">
+                    <User size={18} />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs text-muted-foreground">Name</p>
+                    <p className="text-sm font-semibold truncate text-foreground">Yusuf Ansari</p>
+                  </div>
                 </CardContent>
               </Card>
 
-              <Card className="border border-gray-500 dark:border-[#fdfdfd80]">
-                <CardContent className="p-4 flex items-center gap-3 dark:text-white">
-                  <Mail className="text-primary" size={20} />
-                  <a href="mailto:webdev.yusufansari@gmail.com">webdev.yusufansari@gmail.com</a>
+              <Card className="border border-border/80 bg-card hover:border-primary/40 transition-colors">
+                <CardContent className="p-4 flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-primary/10 text-primary shrink-0">
+                    <Mail size={18} />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs text-muted-foreground">Email</p>
+                    <a
+                      href="mailto:webdev.yusufansari@gmail.com"
+                      className="text-sm font-semibold truncate text-foreground hover:text-primary transition-colors block"
+                    >
+                      webdev.yusufansari@gmail.com
+                    </a>
+                  </div>
                 </CardContent>
               </Card>
 
-              <Card className="border border-gray-500 dark:border-[#fdfdfd80]">
-                <CardContent className="p-4 flex items-center gap-3 dark:text-white">
-                  <MapPin className="text-primary" size={20} />
-                  <span>Mumbai, Maharashtra, India</span>
+              <Card className="border border-border/80 bg-card hover:border-primary/40 transition-colors">
+                <CardContent className="p-4 flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-primary/10 text-primary shrink-0">
+                    <MapPin size={18} />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs text-muted-foreground">Location</p>
+                    <p className="text-sm font-semibold truncate text-foreground">Mumbai, India</p>
+                  </div>
                 </CardContent>
               </Card>
             </div>
           </div>
         </div>
 
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-20"> */}
-        <div className="grid grid-cols-1 gap-12 mt-20">
-          <div>
-            <div className="flex items-center gap-3 mb-6 dark:text-[#fdfdfd80]">
-              <Briefcase className="text-primary" size={24} />
-              <h3 className="text-2xl font-bold">Experience</h3>
+        {/* Experience Section */}
+        <div>
+          <div className="flex items-center gap-3 mb-8">
+            <div className="p-2.5 rounded-lg bg-primary/10 text-primary">
+              <Briefcase size={22} />
             </div>
-
-            <div className="space-y-8">
-              {[
-                {
-                  title: "UI/UX Developer",
-                  company: "Convergence IT Services PVT. LTD.",
-                  // period: "Oct 2025 - Jan 2026",
-                  period: "",
-                  description: "Developed and maintained Joomla-based websites, including custom templates and extensions, ensuring responsive design, optimized performance, and secure content management."
-                },
-                {
-                  title: "Front-End Developer",
-                  company: "Octapro Solutions PVT. LTD.",
-                  // period: "June 2024 - Present",
-                  period: "",
-                  description:
-                    "Independently developed a CRM system using HTML5, CSS3, Bootstrap, SCSS, JavaScript, and jQuery. Integrated RESTful APIs, built a dynamic attendance module, utilized Google Maps API, and enhanced UX with plugins like DataTable and ApexCharts.js. Optimized mobile experience using Bootstrap Offcanvas and collaborated closely with backend developers."
-                },
-                {
-                  title: "UI Developer",
-                  company: "InCruiter India PVT. LTD.",
-                  // period: "January 2024 - April 2024",
-                  period: "",
-                  description:
-                    "Built and maintained WordPress websites with custom themes and post types. Used Advanced Custom Fields (ACF) with PHP, ensured cross-browser/device compatibility, and collaborated with developers and stakeholders to deliver globally accessible digital properties."
-                },
-                {
-                  title: "Front-End Developer",
-                  company: "PaperPlane Design Solutions PVT. LTD.",
-                  // period: "March 2022 - October 2023",
-                  period: "",
-                  description:
-                    "Created responsive, pixel-perfect web pages from design mockups. Used ReactJS with Material UI, GSAP animations, and Axios for API integration. Employed SASS, SEO techniques, performance tools (Lighthouse, ySlow), and Git for version control. Delivered optimized, cross-browser applications with reusable components."
-                },
-                {
-                  title: "Web Developer Intern",
-                  company: "Zobble Solutions PVT. LTD.",
-                  // period: "May 2021 - November 2021",
-                  period: "",
-                  description:
-                    "Developed user interfaces from scratch using HTML5, CSS3, JavaScript, and jQuery. Focused on cross-browser compatibility, animation, and bug resolution. Supported senior developers in building interactive and visually engaging UIs."
-                }
-              ].map((item, index) => (
-                <div key={index} className="relative pl-8 border-l-2 border-gray-200 dark:border-gray-700">
-                  <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-blue-300 dark:bg-teal-500"></div>
-                  <h4 className="text-lg font-semibold text-dark dark:text-[#fdfdfd80]">{item.title}</h4>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                    {item.company} {item.period && item.period !== "" ? "| " + item.period : ""}
-                  </p>
-                  <p className="text-gray-600 dark:text-gray-300">{item.description}</p>
-                </div>
-              ))}
-            </div>
+            <h3 className="text-2xl font-bold text-foreground">Professional Experience</h3>
           </div>
 
-          <div className="hidden">
-            <div className="flex items-center gap-3 mb-6 dark:text-[#fdfdfd80]">
-              <GraduationCap className="text-primary" size={24} />
-              <h3 className="text-2xl font-bold">Education</h3>
-            </div>
-
-            <div className="space-y-8">
-              {[
-                {
-                  degree: "Bachelor&rsquo;s in Mass Media",
-                  institution: "Mumbai University",
-                  period: "2000 - 2000",
-                  description: "Specialized in Mass Communication.",
-                },
-                {
-                  degree: "HSC",
-                  institution: "Mumbai University",
-                  period: "2000 - 2000",
-                  description:
-                    "Secondary Education | Board: Maharashtra Board of Secondary & Higher Secondary Education", 
-                },
-              ].map((item, index) => (
-                <div key={index} className="relative pl-8 border-l-2 border-gray-200 dark:border-gray-700">
-                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-primary"></div>
-                  <h4 className="text-lg font-semibold text-[#fdfdfd80]">{item.degree}</h4>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                    {item.institution} {item.period && item.period !== "" ? "| " + item.period : ""}
-                  </p>
-                  <p className="text-gray-600 dark:text-gray-300">{item.description}</p>
+          <div className="relative pl-6 sm:pl-8 border-l-2 border-border/80 space-y-10">
+            {EXPERIENCES.map((item, index) => (
+              <div key={index} className="relative group">
+                <div className="absolute -left-[31px] sm:-left-[39px] top-1.5 w-3.5 h-3.5 rounded-full border-2 border-background bg-primary group-hover:scale-125 transition-transform" />
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                  <h4 className="text-lg font-bold text-foreground">{item.title}</h4>
+                  <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-muted text-muted-foreground w-fit">
+                    {item.period}
+                  </span>
                 </div>
-              ))}
-            </div>
+                <p className="text-sm font-medium text-primary mb-2">{item.company}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
